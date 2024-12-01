@@ -8,15 +8,15 @@ interface IndexProps {
 }
 
 const Index: FunctionComponent<IndexProps> = () => {
-    return (
-        <>
-            <SafeAreaProvider>
-              <SafeAreaView>
-                <Link href=".."> Back </Link>
-              </SafeAreaView>
-            </SafeAreaProvider>
-        </>
-    )
+  return (
+      <>
+          <SafeAreaProvider>
+            <SafeAreaView>
+              <Link href=".."> Back </Link>
+            </SafeAreaView>
+          </SafeAreaProvider>
+      </>
+  )
 }
 
 export default Index

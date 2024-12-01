@@ -2,6 +2,7 @@ import { ITrack } from "@/models/ITrack";
 const tracks: ITrack[] = []
 
 // Deze functie zal de API-key ophalen en de data uitlezen in de console.
+// Als de component, die bij opstarten ingeladen wordt, geladen is, dan zal deze functie opgeroepen worden.
 export const getApiKeyAndShowData = async (): Promise<ITrack[]> => {
   const clientId = "cba5151df6664a6bad0e4a5385ee6ba3"; // clientId van het project
   const clientSecret = "f39d3f39c74247b3a97f5ba937ee0adc"; // clientSecret van het project
@@ -19,14 +20,16 @@ export const getApiKeyAndShowData = async (): Promise<ITrack[]> => {
   })
   .then(resp => resp.json())
   .then(json => {
-      console.log(json.access_token)
+      // console.log(json.access_token)
       key = json.access_token
   })
 
   return await getTodayTopSongs(key) // door de functie hier meteen op te roepen, zal de data gefetched worden en getoond worden in de console. Elders zal die de link niet vinden.
 }
 
-// Funtie om songs op te halen (voorlopig playlist die effectief wilt werken (Non Stop FM (GTA V) Songs)
+
+
+// Functie om songs op te halen (voorlopig playlist die effectief wilt werken (Non Stop FM (GTA V) Songs)
 const getTodayTopSongs = async (api_key: string) : Promise<ITrack[]> => {
   const playlistId = "119RwhTmhNelp6IqJpt0K4"
   const url = `https://api.spotify.com/v1/playlists/${playlistId}`
@@ -39,7 +42,7 @@ const getTodayTopSongs = async (api_key: string) : Promise<ITrack[]> => {
   })
   .then(resp => {
     if (resp.ok){
-      console.log(resp.ok)
+      // console.log(resp.ok)
       return resp.json()
     }
   })
@@ -51,16 +54,15 @@ const getTodayTopSongs = async (api_key: string) : Promise<ITrack[]> => {
       json.tracks.items.map(track => {
         tracks.push({
           title: track.track.name,
-          artists: track.track.artists.map(a => a.name).join(', '),
+          artists: track.track.artists,
           duration: track.track.duration_ms
         })
       })
 
-      console.log(tracks)
+      // console.log(tracks)
     }
     else
       console.log("Couldn't fetch playlist's data!")
   })
-
   return tracks
 }

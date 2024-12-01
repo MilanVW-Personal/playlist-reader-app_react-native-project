@@ -8,7 +8,7 @@ export default function RootLayout() {
       <Tabs.Screen
         name="playlist"
         options={{
-          title: 'Playlists',
+          title: 'Top Songs',
           headerShown: false,
           tabBarIcon: ({color, size}) => <FontAwesome5 size={size} color={color} name="spotify"/>,
         }}

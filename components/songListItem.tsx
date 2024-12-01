@@ -1,42 +1,44 @@
 import {FunctionComponent} from 'react'
-import {Button, StyleSheet, View} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {Label, Text} from '@react-navigation/elements'
-import {getApiKeyAndShowData} from "@/api/spotifyApi"
+import {ITrack} from '@/models/ITrack'
 
-interface SongListItemProps {
-  artist: string
-  title: string
-}
+const SongListItem: FunctionComponent<ITrack> = ({artists, title, duration}) => {
 
-const SongListItem: FunctionComponent<SongListItemProps> = ({artist, title}) => {
+  const songLength = new Date(duration)
+
 
   return (
     <>
       <View style={styles.container}>
         <Label style={styles.songTitle}>{title}</Label>
-        <Text style={styles.songArtist}>{artist}</Text>
-        <Button title="Get key" onPress={getApiKeyAndShowData}></Button>
+        {artists.map((a, keyIndex) => {
+          return(
+            <Label key={keyIndex} style={styles.songArtist}>{a.name}</Label>
+          )
+        })}
+        <Text style={styles.songArtist}>{songLength.toTimeString()}</Text>
       </View>
     </>
   )
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ // style kan later nog veranderen
   container: {
-    margin: 10,
+    margin: 5,
     padding: 5,
     borderRadius: 5,
-    backgroundColor: 'black',
+    backgroundColor: '#191414',
+    borderWidth: 1,
   },
   songTitle: {
-    fontSize: 25,
+    fontSize: 15,
     fontWeight: 'bold',
-    color: 'green',
+    color: '#1ed760',
   },
   songArtist: {
     fontSize: 15,
-    textAlign: 'center',
-    color: 'green',
+    color: '#1db954',
   },
 })
 

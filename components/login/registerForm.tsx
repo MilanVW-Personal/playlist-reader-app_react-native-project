@@ -1,7 +1,7 @@
 import {ChangeEvent, FunctionComponent, useState} from 'react'
 import {Button, StyleSheet, TextInput, View} from 'react-native'
 import {Label} from '@react-navigation/elements'
-import {createNewAccount} from '@/api/manageUsers'
+import {createNewAccount} from '@/api/users'
 
 interface RegisterProps {
 
