@@ -1,7 +1,7 @@
 import {FunctionComponent} from 'react'
 import {Button, StyleSheet, View} from 'react-native'
 import {Label, Text} from '@react-navigation/elements'
-import {getApiKey, getTodayTopSongs} from '@/api/spotifyApi'
+import {getApiKeyAndShowData} from "@/api/spotifyApi"
 
 interface SongListItemProps {
   artist: string
@@ -9,13 +9,13 @@ interface SongListItemProps {
 }
 
 const SongListItem: FunctionComponent<SongListItemProps> = ({artist, title}) => {
+
   return (
     <>
       <View style={styles.container}>
         <Label style={styles.songTitle}>{title}</Label>
         <Text style={styles.songArtist}>{artist}</Text>
-        <Button title="Get key" onPress={getApiKey}></Button>
-        <Button title="Log playlist" onPress={getTodayTopSongs}></Button>
+        <Button title="Get key" onPress={getApiKeyAndShowData}></Button>
       </View>
     </>
   )
