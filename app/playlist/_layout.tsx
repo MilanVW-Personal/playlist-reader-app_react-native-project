@@ -8,8 +8,14 @@ const StackLayoutHome: FunctionComponent = () => {
       <Stack.Screen
         name="all"
         options={{
-          title: "Todays Top Hits"
+          title: "Ultratop 50 Singles - Vlaanderen"
         }}/>
+      <Stack.Screen
+        name="[itemId]"
+        options={{
+          title: "Details of song"
+        }}
+      />
     </Stack>
   )
 }

@@ -22,7 +22,12 @@ const LoginForm: FunctionComponent = () => {
         <TextInput placeholder="Enter your username" onChange={() => changeUsername} />
         <Label style={styles.labelInput}>Enter password: </Label>
         <TextInput placeholder="Enter your password" onChange={() => changePassword} />
-        <Button title="Login" onPress={() => loginUser(username, password)} />
+        <Button
+          title="Login"
+          onPress={() => {
+            loginUser(username, password)
+          }}
+        />
       </View>
     </>
   )

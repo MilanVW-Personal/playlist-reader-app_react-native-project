@@ -6,7 +6,7 @@ export const loginUser = (username: string, password: string) => {
   const foundUser = users.find((user: IUser) => user.username === username)
   
   if (!foundUser)
-    return alert("This username doesn't exist!")
+    return alert("This username doesn't exist! Please create a new account.")
 
   if (foundUser.password !== password)
     return alert("Incorrect password!")
@@ -15,17 +15,12 @@ export const loginUser = (username: string, password: string) => {
 }
 
 export const createNewAccount = (email: string, username: string, password: string) => {
-  if (users.length > 0) {
-    users.forEach((user: IUser) => {
-      if (user.username === username) {
-        alert("This username is already taken.")
-      }
+  if (users.some((user: IUser) => user.username === username))
+    return alert("This username already exist! Please log-in instead.")
 
-      if (user.email === email) {
-        alert("This email is already in use.") // later eventueel veranderen naar de mogelijkheid om meerdere accounts per email te hebben
-      }
-    })
-  }
+  if (users.some((user: IUser) => user.email === email))
+    return alert("This email already exist! Please log-in instead.")
 
-  return users.push({username: username, email: email, password: password})
+  users.push({username: username, email: email, password: password})
+  return true
 }

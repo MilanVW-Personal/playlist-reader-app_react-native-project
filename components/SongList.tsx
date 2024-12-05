@@ -8,12 +8,12 @@ const SongList: FunctionComponent = () => {
   const [tracks, setTracks] = useState<ITrack[]>([])
 
   useEffect(() => {
-    const fetchTracks = async () => {
-      const fetchedTracks = await getApiKeyAndShowData()
-      setTracks(fetchedTracks)
+    const getTracks = async () => {
+      const tracks = await getApiKeyAndShowData()
+      setTracks(tracks)
     }
 
-    fetchTracks()
+    getTracks()
   }, [])
 
   return (

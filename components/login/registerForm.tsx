@@ -2,16 +2,15 @@ import {ChangeEvent, FunctionComponent, useState} from 'react'
 import {Button, StyleSheet, TextInput, View} from 'react-native'
 import {Label} from '@react-navigation/elements'
 import {createNewAccount} from '@/api/users'
+import {useNavigation} from 'expo-router'
 
-interface RegisterProps {
-
-}
+interface RegisterProps {}
 
 const RegisterForm: FunctionComponent<RegisterProps> = () => {
-
   const [newUserEmail, setNewUserEmail] = useState('')
   const [newUserName, setNewUserName] = useState('')
   const [newUserPassword, setNewUserPassword] = useState('')
+  const navigate = useNavigation()
 
   const handleEmailInput = (evt: ChangeEvent<HTMLInputElement>) => {
     setNewUserEmail(evt.target.value)
@@ -30,13 +29,19 @@ const RegisterForm: FunctionComponent<RegisterProps> = () => {
       <Label>Create your new account: </Label>
       <View>
         <Label>Email address: </Label>
-        <TextInput style={styles.inputField} placeholder="example@mail.com" onChange={() => handleEmailInput}/>
+        <TextInput style={styles.inputField} placeholder="example@mail.com" onChange={() => handleEmailInput} />
         <Label>Username: </Label>
-        <TextInput style={styles.inputField} placeholder="username" onChange={() => handleUserNameInput}/>
+        <TextInput style={styles.inputField} placeholder="username" onChange={() => handleUserNameInput} />
         <Label>Password: </Label>
-        <TextInput style={styles.inputField} placeholder="placeholder" onChange={() => handlePasswordInput}/>
+        <TextInput style={styles.inputField} placeholder="placeholder" onChange={() => handlePasswordInput} />
       </View>
-      <Button title="Create Account" onPress={() => createNewAccount(newUserEmail, newUserName, newUserPassword)}/>
+      <Button
+        title="Create Account"
+        onPress={() => {
+          createNewAccount(newUserEmail, newUserName, newUserPassword)
+          console.log(newUserName, newUserEmail, newUserPassword)
+        }}
+      />
     </View>
   )
 }
@@ -45,7 +50,7 @@ const styles = StyleSheet.create({
   inputField: {
     borderWidth: 1,
     borderColor: 'gray',
-  }
+  },
 })
 
 export default RegisterForm

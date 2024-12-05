@@ -3,6 +3,9 @@ import {Stack} from 'expo-router'
 
 
 const StackLayoutLogin: FunctionComponent = () => {
+
+
+
   return (
     <>
       <Stack>
