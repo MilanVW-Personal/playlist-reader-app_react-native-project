@@ -1,5 +1,5 @@
 import {FunctionComponent, useEffect, useState} from 'react'
-import {Image, StyleSheet, Text, View} from 'react-native'
+import {Button, Image, StyleSheet, Text, View} from 'react-native'
 import {getTrackDetails} from '@/api/spotifyApi'
 import {ITrack} from '@/models/ITrack'
 
@@ -50,12 +50,14 @@ const SongListDetail: FunctionComponent<SongListDetailProps> = ({id}) => {
         </View>
         <View>
           <Text style={styles.viewTitle}>Duration:</Text>
-          <Text>{detailsSong?.duration}</Text>
+          <Text>{new Date(detailsSong?.duration).getMinutes()}:{new Date(detailsSong?.duration).getSeconds()}</Text>
         </View>
         <View>
           <Text style={styles.viewTitle}>Popularity:</Text>
           <Text>{detailsSong?.popularity}%</Text>
         </View>
+
+        <Button title="Add song to custom playlist"/>
       </View>
     </>
   )

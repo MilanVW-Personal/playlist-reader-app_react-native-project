@@ -4,11 +4,21 @@
 
 ## Scherm 1
 
-_Screenshot en beschrijving van de functionaliteiten in het eerste scherm van je app._
+![img.png](screenshots-pe/scherm1.png)
+**Uitleg screenshot:**
+Dit eerste scherm zal het startscherm van de applicatie worden. 
+Op het scherm, wordt er via de Spotify-API (zie online services), de playlist 'Ultratop 50 Singles - Vlaanderen' opgehaald,
+waarna deze op het scherm worden getoond in een apart item (zoals op screenshot, de styling van de items is tijdelijk, kan later nog veranderen).
+Het is ook mogelijk om te scrollen om naar beneden om de rest van de items te bekijken, die in de playlist zitten. 
+Het is ook mogelijk om op een item te drukken om naar een detailpagina (scherm 2) te gaan waar de details worden getoond van de song die je hebt gekozen.
 
 ## Scherm 2
 
-_Screenshot en beschrijving van de functionaliteiten in het eerste scherm van je app._
+![img.png](screenshots-pe/scherm2.png)
+**Uitleg screenshot:**
+Dit tweede scherm, is zoals al eerder vermeld, de detailpagina van een item vanop het eerste scherm.
+Hier zul je onder andere de foto van het lied kunnen zien, samen met de artiesten, de lengte van de song, of het liedje expliciet is of niet (scheldwoorden gebruikt of niet), huidige positie van de song...
+De layout hoe het er nu uit ziet is tijdelijk en zal zeker nog veranderen. Op deze pagina zal ook een knop staan om het lied in kwestie toe te voegen aan je eigen playlist, die je zal kunnen maken als je bent ingelogd 
 
 ## Scherm 3
 
