@@ -57,7 +57,7 @@ const SongListDetail: FunctionComponent<SongListDetailProps> = ({id}) => {
           <Text>{detailsSong?.popularity}%</Text>
         </View>
 
-        <Button title="Add song to custom playlist"/>
+        <Button title={'Add song to custom playlist'} onPress={() => alert("added to playlist!")}/>
       </View>
     </>
   )

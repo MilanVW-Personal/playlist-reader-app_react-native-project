@@ -6,7 +6,6 @@ import {ScrollView} from 'react-native'
 
 const SongList: FunctionComponent = () => {
   const [tracks, setTracks] = useState<ITrack[]>([])
-
   useEffect(() => {
     const getTracks = async () => {
       const tracks = await getApiKeyAndShowData()
