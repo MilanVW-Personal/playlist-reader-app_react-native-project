@@ -1,22 +1,20 @@
 import {FunctionComponent} from 'react'
-import {StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, View, Text} from 'react-native'
+import CustomPlaylist from '@/components/customList/CustomPlaylist'
 
-interface StartProps {
-
-}
+interface StartProps {}
 
 const Start: FunctionComponent<StartProps> = () => {
+  const loggedIn = true
+
   return (
     <View>
-      <Text style={styles.text}>You must login before you can create any playlists of your own!</Text>
+      {
+        loggedIn ?  <CustomPlaylist /> : <Text style={{textAlign: "center"}}>You must be logged in to create playlists</Text>
+      }
+
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  text: {
-    textAlign: 'center',
-  }
-})
 
 export default Start

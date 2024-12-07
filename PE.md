@@ -21,12 +21,29 @@ Hier zul je onder andere de foto van het lied kunnen zien, samen met de artieste
 De layout hoe het er nu uit ziet is tijdelijk en zal zeker nog veranderen. Op deze pagina zal ook een knop staan om het lied in kwestie toe te voegen aan je eigen playlist, die je zal kunnen maken als je bent ingelogd 
 
 ## Scherm 3
+![img.png](screenshots-pe/scherm3-1.png)
+![img.png](screenshots-pe/scherm3-2.png)
+![img.png](screenshots-pe/scherm3-3.png)
+**Uitleg screenshot:**
+Het derde scherm zal enkel beschikbaar zijn als je bent ingelogd met een account. Als dit het geval is,
+dan zal je de eerste foto te zien krijgen. Je krijgt een knop te zien met een tekst 'No playlists'. 
+Uiteraard, zal er, als je op de knop drukt, een playlist worden gemaakt, voorlopig met test-data. 
+Later zal dit naar een create-pagina gaan om zo een playlist aan te maken (zie scherm 4)' 
+Zodra er een playlist wordt aangemaakt, zal de tekst veranderd worden en zal je de tweede foto te zien krijgen.
+Je zal een kruisje te zien krijgen bij de playlist, als je hierop zou drukken dan zal de playlist ook verwijderd worden uit de lijst.
+Indien mogelijk, kan er eventueel nog een popup komen die vraagt of je de playlist weldegelijk wilt verwijderen, een soort bevestiging dus.
 
-_Beschrijving van de functionaliteiten in het eerste scherm van je app._
+Als je niet zou zijn ingelogd dan krijg je de derde foto te zien waarop tekst staat die zegt dat je moet ingelogd zijn.
 
 ## Scherm 4
 
-_Beschrijving van de functionaliteiten in het eerste scherm van je app._
+![img.png](screenshots-pe/scherm4.png)
+**Uitleg screenshot:**
+Dit 4de scherm is de create pagina van de playlists, waar je het form kunt invullen.
+Dit formulier bestaat dus uit een titel en een beschrijving van de playlist, die ook in de interface van IPlaylist, worden meegegeven,
+zodat er objecten met deze properties kunnen gemaakt worden. De styling van het formulier is nog niet finaal, maar verandert zeker nog.
+Je ziet ook een knop onderaan de pagina genaamd 'Submit', dit zal simpelweg de functie 'createPlaylist' uitvoeren (zie playlist.ts), en zal ook gebruik maken van de 'useRouting' hook 
+om te navigeren naar de vorige pagina '..'.
 
 ## Native modules
 

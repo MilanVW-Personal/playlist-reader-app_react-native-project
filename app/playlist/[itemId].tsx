@@ -1,6 +1,6 @@
 import {FunctionComponent} from 'react'
 import {useLocalSearchParams} from 'expo-router'
-import SongListDetail from '@/components/SongListDetail'
+import SongListDetail from '@/components/playlist/SongListDetail'
 
 
 

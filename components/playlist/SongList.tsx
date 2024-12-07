@@ -1,5 +1,5 @@
 import {FunctionComponent, useEffect, useState} from 'react'
-import SongListItem from '@/components/songListItem'
+import SongListItem from '@/components/playlist/songListItem'
 import {getApiKeyAndShowData} from '@/api/spotifyApi'
 import {ITrack} from '@/models/ITrack'
 import {ScrollView} from 'react-native'
