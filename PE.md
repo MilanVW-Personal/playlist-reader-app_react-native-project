@@ -45,6 +45,38 @@ zodat er objecten met deze properties kunnen gemaakt worden. De styling van het 
 Je ziet ook een knop onderaan de pagina genaamd 'Submit', dit zal simpelweg de functie 'createPlaylist' uitvoeren (zie playlist.ts), en zal ook gebruik maken van de 'useRouting' hook 
 om te navigeren naar de vorige pagina '..'.
 
+## Scherm 5
+![img.png](screenshots-pe/scherm5-1.png)
+![img.png](screenshots-pe/scherm5-2.png)
+**Uitleg screenshot:**
+Dit vijfde scherm is het account-scherm. Als je nog geen account zou hebben, dan zal je de eerste foto te 
+zien krijgen. Je zal daar 2 knoppen krijgen die je ofwel brengen naar een inlog-pagina of een pagina waar je kunt registeren.
+Voorlopig werken deze pagina's nog niet helemaal, maar ik denk dat ik deze wel kan laten werken door eventueel Firebase authenticatie te gebruiken. 
+
+Als je wel ben ingelogd dan zal je de tweede foto te zien krijgen. Hier zal je een overzicht krijgen van je gegevens zoals je 'username', paswoord, en email-adres. 
+Hoe dat de pagina er nu uitziet is tijdelijk en zal hoogstwaarschijnlijk wel aanpassen qua styling. Dat geldt ook voor de 2 knoppen op foto 1.
+
+## Scherm 6
+![img.png](screenshots-pe/scherm6.png)
+**Uitleg screenshot:**
+Dit scherm krijg je als op de 'Login' knop drukt. 
+Als je al geregistreerd bent, dan hoef je hier gewoonweg je username en wachtwoord in te voeren en dan op de 'Login' knop te drukken.
+Bij een druk op de knop zal je dus terug gebracht worden naar je account-overzicht (zie vorig scherm)' met de juiste gegevens. Zoals alle schermen,
+is de styling tijdelijk, en zal dus zeker veranderen.
+
+Voorlopig werkt de functionaliteit ook nog niet 100%, dus hier zal ook nog moeten aan getweaked worden, als ik dit wil laten werken,
+eventueel door gebruik van Firebase bijvoorbeeld, zoals hierboven al vermeld.
+
+## Scherm 7
+![img.png](screenshots-pe/scherm7.png)
+**Uitleg screenshot:**
+Naast de 'Login' knop, kom je dit scherm terecht als je op de 'Register' knop drukt.
+Hier kan je een email, username, passwoord invoeren die je wilt gebruiken. 
+Bij een druk op de 'Create account' knop, zal je ook worden teruggebracht naar je account-overzicht, opnieuw met de juiste info ingevuld.
+
+Voorlopig werkt de functionaliteit hier ook nog niet 100%, dus hier zal ook nog moeten aan getweaked worden, als ik dit wil laten werken,
+eventueel door gebruik van Firebase bijvoorbeeld, zoals al eerder vermeld.
+
 ## Native modules
 
 _Bespreek hier minstens twee native modules die je verwerkt in je applicatie.
@@ -53,12 +85,22 @@ over wat een native module juist is._
 
 ## Online services
 
+**1. Spotify API**
+Met deze app maak ik gebruik van de Spotify API, die wordt gebruikt om de 'Top Songs' pagina op te vullen.
+Er wordt met deze API, een api-key opgehaald en er wordt vervolgens een playlist opgehaald via een bepaalde id. 
+In die functie, waar ik de playlist ophaal, vul ik de array op (gemaakt op basis van het 'ITrack' model), met de juiste waardes.
+Uiteindelijk krijg ik dus een array terug met alle items die je op de eerste pagina ziet, met enkel de properties van het model en niet alle andere properties die de API 
+teruggeeft.
+
+**2. ...**
+(later deze avond aanvullen)
+
 _Bespreek hier minstens één online service die je verwerkt in je applicatie.
 Lees de [projectopgave](https://javascript.pit-graduaten.be/evaluatie/mobile/project.html#online-services) voor meer info
 over wat een native module juist is._
 
 ## Gestures & animaties
-
+(later deze avond aanvullen)
 _Bespreek hier waar je minstens één gesture en één animatie verwerkt in je applicatie._
 
 # Feedback

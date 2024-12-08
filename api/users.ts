@@ -11,7 +11,7 @@ export const loginUser = (username: string, password: string) => {
   if (foundUser.password !== password)
     return alert("Incorrect password!")
 
-  return foundUser
+  return true
 }
 
 export const createNewAccount = (email: string, username: string, password: string) => {
@@ -24,3 +24,8 @@ export const createNewAccount = (email: string, username: string, password: stri
   users.push({username: username, email: email, password: password})
   return true
 }
+
+// export const isLoggedInOrRegistered = () => {
+//   if (loginUser("User1", "test123test"))
+//     return true
+// }

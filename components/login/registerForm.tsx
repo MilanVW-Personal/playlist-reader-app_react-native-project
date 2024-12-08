@@ -1,8 +1,9 @@
 import {ChangeEvent, FunctionComponent, useState} from 'react'
-import {Button, StyleSheet, TextInput, View} from 'react-native'
+import {Button, KeyboardAvoidingView, StyleSheet, TextInput, View} from 'react-native'
 import {Label} from '@react-navigation/elements'
 import {createNewAccount} from '@/api/users'
-import {useNavigation} from 'expo-router'
+import {useRouter} from 'expo-router'
+import {FontAwesome5} from '@expo/vector-icons'
 
 interface RegisterProps {}
 
@@ -10,7 +11,8 @@ const RegisterForm: FunctionComponent<RegisterProps> = () => {
   const [newUserEmail, setNewUserEmail] = useState('')
   const [newUserName, setNewUserName] = useState('')
   const [newUserPassword, setNewUserPassword] = useState('')
-  const navigate = useNavigation()
+  const [showPass, setShowPass] = useState<boolean>(false)
+  const router = useRouter()
 
   const handleEmailInput = (evt: ChangeEvent<HTMLInputElement>) => {
     setNewUserEmail(evt.target.value)
@@ -25,7 +27,7 @@ const RegisterForm: FunctionComponent<RegisterProps> = () => {
   }
 
   return (
-    <View>
+    <KeyboardAvoidingView behavior={'padding'}>
       <Label>Create your new account: </Label>
       <View>
         <Label>Email address: </Label>
@@ -33,16 +35,17 @@ const RegisterForm: FunctionComponent<RegisterProps> = () => {
         <Label>Username: </Label>
         <TextInput style={styles.inputField} placeholder="username" onChange={() => handleUserNameInput} />
         <Label>Password: </Label>
-        <TextInput style={styles.inputField} placeholder="placeholder" onChange={() => handlePasswordInput} />
+        <TextInput style={styles.inputField} placeholder="placeholder" onChange={() => handlePasswordInput} secureTextEntry={showPass}/>
       </View>
       <Button
         title="Create Account"
         onPress={() => {
-          createNewAccount(newUserEmail, newUserName, newUserPassword)
-          console.log(newUserName, newUserEmail, newUserPassword)
+          if (createNewAccount(newUserEmail, newUserName, newUserPassword))
+            router.push('/account/start')
+          // console.log(newUserName, newUserEmail, newUserPassword)
         }}
       />
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 
