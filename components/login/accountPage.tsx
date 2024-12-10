@@ -1,11 +1,13 @@
 import {FunctionComponent} from 'react'
 import {Text, View} from 'react-native'
 import {Label} from '@react-navigation/elements'
-import {IUser} from '@/models/IUser'
 
-interface AccountPageProps extends IUser {}
+interface AccountPageProps {
+  username: string | undefined
+  email: string | undefined
+}
 
-const AccountPage: FunctionComponent<AccountPageProps> = ({username, password, email}) => {
+const AccountPage: FunctionComponent<AccountPageProps> = ({username, email}) => {
   return (
     <>
       <View>
@@ -13,7 +15,6 @@ const AccountPage: FunctionComponent<AccountPageProps> = ({username, password, e
         <View>
           {/*Flex*/}
           <Text>Username: {username}</Text>
-          <Text>Password: {password}</Text>
           <Text>Email address: {email}</Text>
         </View>
       </View>

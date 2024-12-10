@@ -1,9 +1,8 @@
 import {ChangeEvent, FunctionComponent, useState} from 'react'
 import {Button, KeyboardAvoidingView, StyleSheet, TextInput, View} from 'react-native'
 import {Label} from '@react-navigation/elements'
-import {createNewAccount} from '@/api/users'
+import {register} from '@/api/users'
 import {useRouter} from 'expo-router'
-import {FontAwesome5} from '@expo/vector-icons'
 
 interface RegisterProps {}
 
@@ -11,19 +10,12 @@ const RegisterForm: FunctionComponent<RegisterProps> = () => {
   const [newUserEmail, setNewUserEmail] = useState('')
   const [newUserName, setNewUserName] = useState('')
   const [newUserPassword, setNewUserPassword] = useState('')
-  const [showPass, setShowPass] = useState<boolean>(false)
   const router = useRouter()
 
-  const handleEmailInput = (evt: ChangeEvent<HTMLInputElement>) => {
-    setNewUserEmail(evt.target.value)
-  }
-
-  const handleUserNameInput = (evt: ChangeEvent<HTMLInputElement>) => {
-    setNewUserName(evt.target.value)
-  }
-
-  const handlePasswordInput = (evt: ChangeEvent<HTMLInputElement>) => {
-    setNewUserPassword(evt.target.value)
+  const submitRegister = async () => {
+    console.log("test")
+    await register(newUserEmail, newUserPassword, newUserName)
+    router.push("/account/start")
   }
 
   return (
@@ -31,20 +23,18 @@ const RegisterForm: FunctionComponent<RegisterProps> = () => {
       <Label>Create your new account: </Label>
       <View>
         <Label>Email address: </Label>
-        <TextInput style={styles.inputField} placeholder="example@mail.com" onChange={() => handleEmailInput} />
+        <TextInput style={styles.inputField} placeholder="example@mail.com" onChangeText={setNewUserEmail} />
         <Label>Username: </Label>
-        <TextInput style={styles.inputField} placeholder="username" onChange={() => handleUserNameInput} />
+        <TextInput style={styles.inputField} placeholder="username" onChangeText={setNewUserName} />
         <Label>Password: </Label>
-        <TextInput style={styles.inputField} placeholder="placeholder" onChange={() => handlePasswordInput} secureTextEntry={showPass}/>
+        <TextInput
+          style={styles.inputField}
+          placeholder="password"
+          onChangeText={setNewUserPassword}
+          secureTextEntry
+        />
       </View>
-      <Button
-        title="Create Account"
-        onPress={() => {
-          if (createNewAccount(newUserEmail, newUserName, newUserPassword))
-            router.push('/account/start')
-          // console.log(newUserName, newUserEmail, newUserPassword)
-        }}
-      />
+      <Button title="Create Account" onPress={submitRegister} />
     </KeyboardAvoidingView>
   )
 }

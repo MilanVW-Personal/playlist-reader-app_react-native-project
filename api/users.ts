@@ -1,31 +1,28 @@
-import {IUser} from '@/models/IUser'
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from '@firebase/auth'
+import {auth, firestore} from '@/api/firebaseConfig'
+import {doc, setDoc} from '@firebase/firestore'
 
-const users : IUser[] = []
 
-export const loginUser = (username: string, password: string) => {
-  const foundUser = users.find((user: IUser) => user.username === username)
-  
-  if (!foundUser)
-    return alert("This username doesn't exist! Please create a new account.")
+export const register = async (email: string, password: string, username: string) => {
+  const userGegevens = await createUserWithEmailAndPassword(auth, email, password)
+  const user = userGegevens.user
 
-  if (foundUser.password !== password)
-    return alert("Incorrect password!")
+  await updateProfile(user, {displayName: username})
+  console.log(user)
 
-  return true
+  await setDoc(doc(firestore, "users", user.uid), {
+    email: email,
+    displayName: username,
+  })
+
+  return user
 }
 
-export const createNewAccount = (email: string, username: string, password: string) => {
-  if (users.some((user: IUser) => user.username === username))
-    return alert("This username already exist! Please log-in instead.")
+export const login = async (email: string, password: string) => {
+  const userGegevens = await signInWithEmailAndPassword(auth, email, password)
+  const user = userGegevens.user
 
-  if (users.some((user: IUser) => user.email === email))
-    return alert("This email already exist! Please log-in instead.")
+  console.log(user)
 
-  users.push({username: username, email: email, password: password})
-  return true
+  return user
 }
-
-// export const isLoggedInOrRegistered = () => {
-//   if (loginUser("User1", "test123test"))
-//     return true
-// }
