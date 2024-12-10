@@ -20,9 +20,5 @@ export const register = async (email: string, password: string, username: string
 
 export const login = async (email: string, password: string) => {
   const userGegevens = await signInWithEmailAndPassword(auth, email, password)
-  const user = userGegevens.user
-
-  console.log(user)
-
-  return user
+  return userGegevens.user
 }

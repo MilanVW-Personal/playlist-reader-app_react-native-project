@@ -2,6 +2,7 @@ import {FunctionComponent, useState} from 'react'
 import {Button, Text, TextInput, View} from 'react-native'
 import {Link, useRouter} from 'expo-router'
 import {createPlaylist} from '@/api/playlist'
+import {auth} from '@/api/firebaseConfig'
 
 interface CreateProps {}
 
@@ -10,13 +11,17 @@ const Create: FunctionComponent<CreateProps> = () => {
   const [descriptionInput, setDescriptionInput] = useState<string>('')
   const router = useRouter()
 
-  const changeTitle = (textTitle: string) => {
-    setTitleInput(textTitle)
+  const submitCreateForm = async () => {
+    const userId = auth.currentUser?.uid
+    console.log(userId)
+    await createPlaylist(titleInput, descriptionInput, userId)
+
+    // setTitleInput("")
+    // setDescriptionInput("")
+    alert("created!")
+    router.push("/customList/start")
   }
 
-  const changeDesc = (textDesc: string) => {
-    setDescriptionInput(textDesc)
-  }
 
   return (
     <>
@@ -24,18 +29,14 @@ const Create: FunctionComponent<CreateProps> = () => {
         <Text>Create a new playlist</Text>
         <View>
           <Text>Playlist title: </Text>
-          <TextInput placeholder={'Playlist x'} value={titleInput} onChangeText={changeTitle} />
+          <TextInput placeholder={'Playlist x'} value={titleInput} onChangeText={setTitleInput} />
         </View>
         <View>
           <Text>Playlist description: </Text>
-          <TextInput placeholder={'This is a playlist...'} value={descriptionInput} onChangeText={changeDesc} />
+          <TextInput placeholder={'This is a playlist...'} value={descriptionInput} onChangeText={setDescriptionInput} />
         </View>
         <Link href={'/customList/start'}>
-          <Button title={'Submit'} onPress={() => {
-              createPlaylist(titleInput, descriptionInput)
-              router.push("../customList/start")
-            }
-          } />
+          <Button title={'Submit'} onPress={submitCreateForm} />
         </Link>
       </View>
     </>

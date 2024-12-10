@@ -1,4 +1,4 @@
-import {ChangeEvent, FunctionComponent, useState} from 'react'
+import {FunctionComponent, useState} from 'react'
 import {Button, KeyboardAvoidingView, StyleSheet, TextInput} from 'react-native'
 import {Label} from '@react-navigation/elements'
 import {login} from '@/api/users'
