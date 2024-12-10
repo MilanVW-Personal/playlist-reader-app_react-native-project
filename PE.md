@@ -110,5 +110,7 @@ om per item op de playlist pagina, een swipe-gesture toe te voegen, om zo een it
 
 # Feedback
 
-**Wordt verder aangevuld door jouw docent.**
+Het project is goed beschreven en volgens mij wel realistisch, maar ook wel uitgebreid. 
+Leg vooral de nadruk op onderdelen waar ik punten op kan geven. Veel schermen is veel werk, als je daarom geen gestures hebt, is dat heel jammer. 
+
 
