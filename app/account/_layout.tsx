@@ -9,7 +9,8 @@ const StackLayoutLogin: FunctionComponent = () => {
         <Stack.Screen
           name="start"
           options={{
-            title: "Manage your account"
+            title: "Manage your account",
+            headerBackVisible: false
           }}
         />
         <Stack.Screen

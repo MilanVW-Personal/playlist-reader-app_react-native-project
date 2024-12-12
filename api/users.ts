@@ -15,6 +15,7 @@ export const register = async (email: string, password: string, username: string
     displayName: username,
   })
 
+  // test - abcdefg
   return user
 }
 

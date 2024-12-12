@@ -2,13 +2,13 @@ import {FunctionComponent} from 'react'
 import {IPlaylist} from '@/models/IPlaylist'
 import {StyleSheet, Text, View} from 'react-native'
 import {FontAwesome5} from '@expo/vector-icons'
+import {deletePlaylist} from '@/api/playlist'
 
 interface CustomPlaylistItemProps extends IPlaylist {
   index: number
-  onPress: (i: number) => void
 }
 
-const CustomPlaylistItem: FunctionComponent<CustomPlaylistItemProps> = ({title, description, index, onPress}) => {
+const CustomPlaylistItem: FunctionComponent<CustomPlaylistItemProps> = ({id, title, description, index}) => {
 
   return (
     <>
@@ -16,7 +16,7 @@ const CustomPlaylistItem: FunctionComponent<CustomPlaylistItemProps> = ({title, 
         <View key={index}>
           <Text style={styles.name}>{title}</Text>
           <Text style={styles.description}>{description}</Text>
-          <FontAwesome5 style={styles.icon} name={'times'} size={20} onPress={onPress} />
+          <FontAwesome5 style={styles.icon} name={'times'} size={20} onPress={() => deletePlaylist(id)} />
         </View>
       </View>
     </>

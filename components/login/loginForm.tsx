@@ -2,7 +2,7 @@ import {FunctionComponent, useState} from 'react'
 import {Button, KeyboardAvoidingView, StyleSheet, TextInput} from 'react-native'
 import {Label} from '@react-navigation/elements'
 import {login} from '@/api/users'
-import {useRouter} from 'expo-router'
+import {Link, useRouter} from 'expo-router'
 
 const LoginForm: FunctionComponent = () => {
   const [email, setEmail] = useState('')
@@ -17,22 +17,70 @@ const LoginForm: FunctionComponent = () => {
 
   return (
     <>
-      <KeyboardAvoidingView behavior={'padding'}>
-        <Label style={styles.labelInput}>Enter email: </Label>
-        <TextInput placeholder="Enter your email" onChangeText={setEmail} />
-        <Label style={styles.labelInput}>Enter password: </Label>
-        <TextInput placeholder="Enter your password" onChangeText={setPassword} secureTextEntry />
-        <Button title="Login" onPress={submitLogin} />
+      <KeyboardAvoidingView behavior={'padding'} style={styles.card}>
+        <Label style={styles.cardTitle}>Login</Label>
+        <Label style={styles.labelInput}>Enter your email: </Label>
+        <TextInput placeholder="Enter your email" style={styles.inputField} onChangeText={setEmail} />
+        <Label style={styles.labelInput}>Enter your password: </Label>
+        <TextInput placeholder="Enter your password" style={styles.inputField} onChangeText={setPassword} secureTextEntry />
+        <Link style={[styles.linkStyle, styles.button]} href={".."} onPress={submitLogin}>Login</Link>
       </KeyboardAvoidingView>
     </>
   )
 }
 
 const styles = StyleSheet.create({
-  labelInput: {
+  linkStyle: {
+    backgroundColor: 'gray',
+    color: 'white',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 15,
     fontWeight: 'bold',
-    textAlign: 'left',
+
   },
+  card: {
+    borderWidth: 2,
+    borderColor: 'lightgray',
+    borderRadius: 10,
+    textAlign: 'left',
+    marginTop: 'auto',
+    marginLeft: 10,
+    marginRight: 10,
+    height: 'auto',
+    width: 'auto',
+    padding: 5,
+    backgroundColor: 'black',
+  },
+  button: {
+    borderRadius: 5,
+    width: 'auto',
+    height: '25%',
+    margin: 10,
+    backgroundColor: '#1ed760'
+  },
+  cardTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 'auto',
+    color: '#1ed760',
+  },
+  labelInput: {
+    textAlign: 'left',
+    padding: 5,
+    color: 'white',
+    margin: 'auto',
+    fontSize: 15,
+  },
+  inputField: {
+    backgroundColor: 'lightgray',
+    width: 'auto',
+    height: 30,
+    margin: 5,
+    color: 'black',
+    padding: 5,
+    borderRadius: 2
+  }
 })
 
 export default LoginForm

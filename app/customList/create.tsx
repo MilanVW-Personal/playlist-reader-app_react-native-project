@@ -10,16 +10,22 @@ const Create: FunctionComponent<CreateProps> = () => {
   const [titleInput, setTitleInput] = useState<string>('')
   const [descriptionInput, setDescriptionInput] = useState<string>('')
   const router = useRouter()
+  const userId = auth.currentUser?.uid as string
 
   const submitCreateForm = async () => {
-    const userId = auth.currentUser?.uid
-    console.log(userId)
-    await createPlaylist(titleInput, descriptionInput, userId)
 
-    // setTitleInput("")
-    // setDescriptionInput("")
-    alert("created!")
-    router.push("/customList/start")
+    console.log(userId)
+    try {
+      await createPlaylist(titleInput, descriptionInput, userId)
+      setTitleInput("")
+      setDescriptionInput("")
+      alert("created!")
+      router.push("/customList/start")
+    }
+    catch (error){
+      console.error(error)
+    }
+
   }
 
 
