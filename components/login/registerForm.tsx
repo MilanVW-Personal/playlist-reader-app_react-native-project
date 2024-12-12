@@ -2,7 +2,7 @@ import {ChangeEvent, FunctionComponent, useState} from 'react'
 import {Button, KeyboardAvoidingView, StyleSheet, TextInput, View} from 'react-native'
 import {Label} from '@react-navigation/elements'
 import {register} from '@/api/users'
-import {useRouter} from 'expo-router'
+import {Link, useRouter} from 'expo-router'
 
 interface RegisterProps {}
 
@@ -19,14 +19,14 @@ const RegisterForm: FunctionComponent<RegisterProps> = () => {
   }
 
   return (
-    <KeyboardAvoidingView behavior={'padding'}>
-      <Label>Create your new account: </Label>
+    <KeyboardAvoidingView behavior={'padding'} style={styles.card}>
+      <Label style={styles.cardTitle}>Create your new account: </Label>
       <View>
-        <Label>Email address: </Label>
+        <Label style={styles.labelInput}>Email address: </Label>
         <TextInput style={styles.inputField} placeholder="example@mail.com" onChangeText={setNewUserEmail} />
-        <Label>Username: </Label>
+        <Label style={styles.labelInput}>Username: </Label>
         <TextInput style={styles.inputField} placeholder="username" onChangeText={setNewUserName} />
-        <Label>Password: </Label>
+        <Label style={styles.labelInput}>Password: </Label>
         <TextInput
           style={styles.inputField}
           placeholder="password"
@@ -34,16 +34,64 @@ const RegisterForm: FunctionComponent<RegisterProps> = () => {
           secureTextEntry
         />
       </View>
-      <Button title="Create Account" onPress={submitRegister} />
+      <Link style={[styles.linkStyle, styles.button]} href={".."} onPress={submitRegister}>Create account</Link>
     </KeyboardAvoidingView>
   )
 }
 
 const styles = StyleSheet.create({
-  inputField: {
-    borderWidth: 1,
-    borderColor: 'gray',
+  linkStyle: {
+    backgroundColor: 'gray',
+    color: 'white',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 15,
+    fontWeight: 'bold',
+
   },
+  card: {
+    verticalAlign: 'middle',
+    borderWidth: 2,
+    borderColor: 'lightgray',
+    borderRadius: 10,
+    textAlign: 'left',
+    marginTop: 'auto',
+    marginLeft: 10,
+    marginRight: 10,
+    height: 'auto',
+    width: 'auto',
+    padding: 5,
+    backgroundColor: 'black',
+  },
+  button: {
+    borderRadius: 5,
+    width: 'auto',
+    height: '25%',
+    margin: 10,
+    backgroundColor: '#1ed760'
+  },
+  cardTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 'auto',
+    color: '#1ed760',
+  },
+  labelInput: {
+    textAlign: 'left',
+    padding: 5,
+    color: 'white',
+    margin: 'auto',
+    fontSize: 15,
+  },
+  inputField: {
+    backgroundColor: 'lightgray',
+    width: 'auto',
+    height: 30,
+    margin: 5,
+    color: 'black',
+    padding: 5,
+    borderRadius: 2
+  }
 })
 
 export default RegisterForm

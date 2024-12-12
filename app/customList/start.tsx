@@ -1,4 +1,4 @@
-import {FunctionComponent} from 'react'
+import {FunctionComponent, Suspense} from 'react'
 import {Text, View} from 'react-native'
 import CustomPlaylist from '@/components/customList/CustomPlaylist'
 import {auth} from '@/api/firebaseConfig'
@@ -13,7 +13,7 @@ const Start: FunctionComponent<StartProps> = () => {
       {currentUser == null ? (
         <Text style={{textAlign: 'center'}}>You must be logged in to create playlists</Text>
       ) : (
-        <CustomPlaylist/>
+          <CustomPlaylist/>
       )}
     </View>
   )

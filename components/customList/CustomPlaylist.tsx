@@ -1,4 +1,4 @@
-import {FunctionComponent, useEffect, useState} from 'react'
+import {FunctionComponent, Suspense, useEffect, useState} from 'react'
 import {Button, Text, View} from 'react-native'
 import {useRouter} from 'expo-router'
 import {getPlaylistsFromUser} from '@/api/playlist'
@@ -25,7 +25,11 @@ const CustomPlaylist: FunctionComponent = () => {
       <View>
         {!(userPlaylists.length <= 0) ? (
           userPlaylists.map((pl, i) => {
-            return <CustomPlaylistItem key={i} index={i} {...pl} />
+            return (
+              <Suspense fallback={<Text>Loading playlists...</Text>}>
+                <CustomPlaylistItem key={i} index={i} {...pl} />
+              </Suspense>
+            )
           })
         ) : (
           <View>
