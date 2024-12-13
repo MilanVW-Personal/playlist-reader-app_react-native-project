@@ -1,7 +1,8 @@
 import {FunctionComponent, useEffect, useState} from 'react'
-import {Button, Image, StyleSheet, Text, View} from 'react-native'
+import {Button, Image, Modal, StyleSheet, Text, View} from 'react-native'
 import {getTrackDetails} from '@/api/spotifyApi'
 import {ITrack} from '@/models/ITrack'
+import ModalPopUp from '@/components/playlist/modalPopUp'
 
 interface SongListDetailProps {
   id: string
@@ -9,6 +10,9 @@ interface SongListDetailProps {
 
 const SongListDetail: FunctionComponent<SongListDetailProps> = ({id}) => {
   const [detailsSong, setDetailsSong] = useState<ITrack>()
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
+
+
   // console.log(id)
 
   useEffect(() => {
@@ -41,23 +45,25 @@ const SongListDetail: FunctionComponent<SongListDetailProps> = ({id}) => {
 
         <View>
           <Text style={styles.viewTitle}>Explicit:</Text>
-          <Text style={styles.artist}>
-            {detailsSong?.explicit
-              ? <Text>Yes</Text>
-              : <Text>No</Text>
-            }
-          </Text>
+          <Text style={styles.artist}>{detailsSong?.explicit ? <Text>Yes</Text> : <Text>No</Text>}</Text>
         </View>
         <View>
           <Text style={styles.viewTitle}>Duration:</Text>
-          <Text>{new Date(detailsSong?.duration).getMinutes()}:{new Date(detailsSong?.duration).getSeconds()}</Text>
+          <Text>
+            {new Date(detailsSong?.duration).getMinutes()}:{new Date(detailsSong?.duration).getSeconds()}
+          </Text>
         </View>
         <View>
           <Text style={styles.viewTitle}>Popularity:</Text>
           <Text>{detailsSong?.popularity}%</Text>
         </View>
 
-        <Button title={'Add song to custom playlist'} onPress={() => alert("added to playlist!")}/>
+        <Button
+          title={'Add song to custom playlist'}
+          onPress={() => setModalIsOpen(true)}
+
+        />
+        <ModalPopUp onClose={() => setModalIsOpen(false)} visible={modalIsOpen}/>
       </View>
     </>
   )
