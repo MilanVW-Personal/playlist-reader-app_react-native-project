@@ -28,6 +28,7 @@ const CustomPlaylist: FunctionComponent = () => {
             return (
               <Suspense fallback={<Text>Loading playlists...</Text>}>
                 <CustomPlaylistItem key={i} index={i} {...pl} />
+                <Button title={'Create playlist'} onPress={() => router.push('/customList/create')} />
               </Suspense>
             )
           })
