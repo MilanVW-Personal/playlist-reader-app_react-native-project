@@ -1,5 +1,15 @@
 import {firestore} from '@/api/firebaseConfig'
-import {collection, doc, query, serverTimestamp, setDoc, where, getDocs, deleteDoc} from '@firebase/firestore'
+import {
+  collection,
+  doc,
+  query,
+  serverTimestamp,
+  setDoc,
+  where,
+  getDocs,
+  deleteDoc,
+  updateDoc,
+} from '@firebase/firestore'
 import {IPlaylist} from '@/models/IPlaylist'
 
 export const createPlaylist = async (name: string, description: string, userId: string) => {

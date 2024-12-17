@@ -5,7 +5,6 @@ import {getPlaylistsFromUser} from '@/api/playlist'
 import {auth} from '@/api/firebaseConfig'
 import CustomPlaylistItem from '@/components/customList/customPlaylistItem'
 import {IPlaylist} from '@/models/IPlaylist'
-import playlist from '@/app/playlist'
 
 const CustomPlaylist: FunctionComponent = () => {
   const router = useRouter()
@@ -22,7 +21,7 @@ const CustomPlaylist: FunctionComponent = () => {
     getUserPlaylists()
   }, [])
 
-  // Deze useEffect wordt gebruikt om de pagina te "herladen" na het deleten.
+  // Deze useEffect wordt gebruikt om de pagina te "herladen" na het deleten (item wordt uit lijst verwijderd).
   useEffect(() => {
     const getUserPlaylistsAfterDelete = async () => {
       const currentUserId = auth.currentUser?.uid as string
@@ -41,7 +40,6 @@ const CustomPlaylist: FunctionComponent = () => {
             return (
               <Suspense fallback={<Text>Loading playlists...</Text>}>
                 <CustomPlaylistItem key={i} index={i} {...pl} />
-                <Button title={'Create playlist'} onPress={() => router.push('/customList/create')} />
               </Suspense>
             )
           })
@@ -56,9 +54,9 @@ const CustomPlaylist: FunctionComponent = () => {
               }}>
               No playlists
             </Text>
-            <Button title={'Create playlist'} onPress={() => router.push('/customList/create')} />
           </View>
         )}
+        <Button title={'Create playlist'} onPress={() => router.push('/customList/create')} />
       </View>
     </>
   )
