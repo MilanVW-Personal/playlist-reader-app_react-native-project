@@ -2,20 +2,23 @@ import {FunctionComponent, useEffect, useState} from 'react'
 import {Button, Modal, StyleSheet, View} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import {auth} from '@/api/firebaseConfig'
-import {getPlaylistsFromUser} from '@/api/playlist'
+import {addSongToPlaylist, getPlaylistsFromUser} from '@/api/playlist'
 import {IPlaylist} from '@/models/IPlaylist'
 import {Label} from '@react-navigation/elements'
+import {useRouter} from 'expo-router'
 
 interface ModalPopUpsProps {
   onClose: () => void
   visible: boolean
+  songId: string
 }
 
-const ModalPopUp: FunctionComponent<ModalPopUpsProps> = ({onClose, visible}) => {
+const ModalPopUp: FunctionComponent<ModalPopUpsProps> = ({onClose, visible, songId}) => {
   
   const currentUser = auth.currentUser
   const [userPlaylists, setUserPlaylists] = useState<IPlaylist[]>([])
   const [value, setValue] = useState<number>(0)
+  const router = useRouter()
 
   const changeValue = (index: number)=> {
     setValue(index)
@@ -45,7 +48,10 @@ const ModalPopUp: FunctionComponent<ModalPopUpsProps> = ({onClose, visible}) => 
                 )
               })}
             </Picker>
-            <Button title={"Add to selected playlist"} onPress={() => {}}/>
+            <Button title={"Add to selected playlist"} onPress={async () => {
+              await addSongToPlaylist(userPlaylists[value].id, songId)
+              router.push("..")
+            }}/>
           </View>
         </View>
       </Modal>

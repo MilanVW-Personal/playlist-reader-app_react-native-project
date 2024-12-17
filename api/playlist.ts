@@ -8,7 +8,7 @@ import {
   where,
   getDocs,
   deleteDoc,
-  updateDoc,
+  updateDoc, arrayUnion, arrayRemove,
 } from '@firebase/firestore'
 import {IPlaylist} from '@/models/IPlaylist'
 
@@ -55,4 +55,20 @@ export const deletePlaylist = async (id: string) => {
   console.log("delete")
   console.log(id)
   return await deleteDoc(doc(firestore, "playlists", id))
+}
+
+export const addSongToPlaylist = async (id: string, songId: string) => {
+  const ref = doc(firestore, "playlists", id); // database ophalen met de playlistId
+  await updateDoc(ref, {
+    songs: arrayUnion(songId), // arrayUnion() zal hier items aan de array toevoegen, zonder deze te overschrijven
+  })
+
+  console.log("added: ", ref)
+}
+
+export const removeSongFromPlaylist = async (id: string, songId: string) => {
+  const ref = doc(firestore, "playlists", id); // database ophalen met de playlistId
+  await updateDoc(ref, {
+    songs: arrayRemove(songId), // arrayRemove() zal een item verwijderen uit de songs.
+  })
 }

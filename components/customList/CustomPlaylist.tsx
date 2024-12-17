@@ -1,5 +1,5 @@
 import {FunctionComponent, Suspense, useEffect, useState} from 'react'
-import {Button, Text, View} from 'react-native'
+import {Button, Pressable, Text, View} from 'react-native'
 import {useRouter} from 'expo-router'
 import {getPlaylistsFromUser} from '@/api/playlist'
 import {auth} from '@/api/firebaseConfig'
@@ -39,7 +39,9 @@ const CustomPlaylist: FunctionComponent = () => {
           userPlaylists.map((pl, i) => {
             return (
               <Suspense fallback={<Text>Loading playlists...</Text>}>
-                <CustomPlaylistItem key={i} index={i} {...pl} />
+                <Pressable onPress={() => console.log(pl)}>
+                  <CustomPlaylistItem key={i} index={i} {...pl} />
+                </Pressable>
               </Suspense>
             )
           })
@@ -56,7 +58,9 @@ const CustomPlaylist: FunctionComponent = () => {
             </Text>
           </View>
         )}
-        <Button title={'Create playlist'} onPress={() => router.push('/customList/create')} />
+        <View style={{margin: 10}}>
+          <Button  title={'Create playlist'} onPress={() => router.push('/customList/create')} />
+        </View>
       </View>
     </>
   )

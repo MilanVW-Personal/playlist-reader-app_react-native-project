@@ -8,28 +8,54 @@ interface CustomPlaylistItemProps extends IPlaylist {
   index: number
 }
 
-const CustomPlaylistItem: FunctionComponent<CustomPlaylistItemProps> = ({id, title, description, index}) => {
+const CustomPlaylistItem: FunctionComponent<CustomPlaylistItemProps> = ({id, title, description, index, songs}) => {
+  // const [songsInList, setSongsInList] = useState<ITrack[]>([])
+  // useEffect(() => {
+  //   const getAllSongs = async () => {
+  //     const allSongs = await getApiKeyAndShowData()
+  //     setSongsInList(allSongs)
+  //   }
+  //
+  //   getAllSongs()
+  // }, [songsInList])
 
   return (
     <>
       <View key={index} style={styles.itemCard}>
-          <Text style={styles.name}>{title}</Text>
-          <Text style={styles.description}>{description}</Text>
-          <FontAwesome5 style={styles.icon} name={'times'} size={20} onPress={() => deletePlaylist(id)} />
+        <Text style={styles.name}>{title}</Text>
+        <Text style={styles.description}>{description}</Text>
+        <FontAwesome5 style={styles.iconDelete} name={'times'} size={20} onPress={() => deletePlaylist(id)} />
+        {/*<View style={styles.buttonCollection}>*/}
+        {/*  <FontAwesome5*/}
+        {/*    style={styles.iconAction}*/}
+        {/*    name={'music'}*/}
+        {/*    size={20}*/}
+        {/*    onPress={() => {}}*/}
+        {/*  />*/}
+        {/*  <FontAwesome5*/}
+        {/*    style={styles.iconAction}*/}
+        {/*    name={'pen'}*/}
+        {/*    size={20}*/}
+        {/*    onPress={() => {}}*/}
+        {/*  />*/}
+        {/*</View>*/}
+        {songs.map(s => {
+          return <Text>{s}</Text>
+        })}
       </View>
     </>
   )
 }
 
 const styles = StyleSheet.create({
-  icon: {
+  iconDelete: {
     textAlign: 'right',
     marginRight: 'auto',
     marginLeft: 'auto',
     verticalAlign: 'middle',
     position: 'absolute',
     top: 10,
-    right: 10
+    right: 10,
   },
   name: {
     fontSize: 20,
@@ -50,8 +76,20 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 5,
     backgroundColor: 'lightgray',
-    margin: 10
-  }
+    margin: 10,
+  },
+  buttonCollection: {
+    position: 'absolute',
+    bottom: 5,
+    right: 5,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  iconAction: {
+    marginLeft: 15, // Space out buttons if needed
+  },
 })
 
 export default CustomPlaylistItem

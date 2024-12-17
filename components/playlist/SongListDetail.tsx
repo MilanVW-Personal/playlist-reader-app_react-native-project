@@ -63,7 +63,7 @@ const SongListDetail: FunctionComponent<SongListDetailProps> = ({id}) => {
           onPress={() => setModalIsOpen(true)}
 
         />
-        <ModalPopUp onClose={() => setModalIsOpen(false)} visible={modalIsOpen}/>
+        <ModalPopUp onClose={() => setModalIsOpen(false)} visible={modalIsOpen} songId={id}/>
       </View>
     </>
   )
