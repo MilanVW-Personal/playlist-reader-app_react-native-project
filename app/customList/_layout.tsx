@@ -11,7 +11,8 @@ const StackLayoutCustomList: FunctionComponent<_layoutProps> = () => {
       <Stack.Screen
         name="start"
         options={{
-          title: "Your playlists"
+          title: "Your playlists",
+          headerBackVisible: false
         }}
       />
       <Stack.Screen

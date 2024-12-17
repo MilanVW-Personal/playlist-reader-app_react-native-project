@@ -5,6 +5,7 @@ import {getPlaylistsFromUser} from '@/api/playlist'
 import {auth} from '@/api/firebaseConfig'
 import CustomPlaylistItem from '@/components/customList/customPlaylistItem'
 import {IPlaylist} from '@/models/IPlaylist'
+import playlist from '@/app/playlist'
 
 const CustomPlaylist: FunctionComponent = () => {
   const router = useRouter()
@@ -20,6 +21,18 @@ const CustomPlaylist: FunctionComponent = () => {
 
     getUserPlaylists()
   }, [])
+
+  // Deze useEffect wordt gebruikt om de pagina te "herladen" na het deleten.
+  useEffect(() => {
+    const getUserPlaylistsAfterDelete = async () => {
+      const currentUserId = auth.currentUser?.uid as string
+      const playlists = await getPlaylistsFromUser(currentUserId)
+      setUserPlaylists(playlists)
+    }
+
+    getUserPlaylistsAfterDelete()
+  }, [userPlaylists])
+
   return (
     <>
       <View>
