@@ -2,7 +2,7 @@ import {FunctionComponent} from 'react'
 import {View} from 'react-native'
 import SongList from '@/components/playlist/SongList'
 
-const All: FunctionComponent = () => {
+const PlaylistPage: FunctionComponent = () => {
   return (
     <View>
       <SongList />
@@ -10,4 +10,4 @@ const All: FunctionComponent = () => {
   )
 }
 
-export default All
+export default PlaylistPage

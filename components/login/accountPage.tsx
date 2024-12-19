@@ -26,7 +26,7 @@ const AccountPage: FunctionComponent<AccountPageProps> = ({username, email}) => 
           {/*Flex*/}
           <Text style={styles.text}>Username: {username}</Text>
           <Text style={styles.text}>Email address: {email}</Text>
-          <Button title={"Logout"} onPress={signOut}/>
+          <Button color={'#1ed760'} title={"Logout"} onPress={signOut}/>
         </View>
       </View>
     </>
@@ -58,6 +58,13 @@ const styles = StyleSheet.create({
     color: 'auto',
     margin: 'auto',
     fontSize: 15,
+  },
+  button: {
+    borderRadius: 5,
+    width: 'auto',
+    height: '25%',
+    margin: 10,
+    backgroundColor: '#1ed760'
   },
 })
 

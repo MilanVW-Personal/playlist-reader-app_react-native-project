@@ -8,7 +8,7 @@ interface CustomPlaylistItemProps extends IPlaylist {
   index: number
 }
 
-const CustomPlaylistItem: FunctionComponent<CustomPlaylistItemProps> = ({id, title, description, index, songs}) => {
+const CustomPlaylistItem: FunctionComponent<CustomPlaylistItemProps> = ({id, title, description, index}) => {
   return (
     <>
       <View key={index} style={styles.itemCard}>
@@ -29,9 +29,6 @@ const CustomPlaylistItem: FunctionComponent<CustomPlaylistItemProps> = ({id, tit
         {/*    onPress={() => {}}*/}
         {/*  />*/}
         {/*</View>*/}
-        {songs.map(s => {
-          return <Text>{s}</Text>
-        })}
       </View>
     </>
   )

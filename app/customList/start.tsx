@@ -5,7 +5,7 @@ import {auth} from '@/api/firebaseConfig'
 
 interface StartProps {}
 
-const Start: FunctionComponent<StartProps> = () => {
+const CustomListPage: FunctionComponent<StartProps> = () => {
   const currentUser = auth.currentUser
 
   return (
@@ -19,4 +19,4 @@ const Start: FunctionComponent<StartProps> = () => {
   )
 }
 
-export default Start
+export default CustomListPage

@@ -1,23 +1,14 @@
 import {FunctionComponent} from 'react'
-import {IPlaylist} from '@/models/IPlaylist'
 import {StyleSheet, Text, View} from 'react-native'
 
-interface CustomPlaylistDetailProps extends IPlaylist {
+interface CustomPlaylistDetailProps {
   id: string
 }
 
-const CustomPlaylistEdit: FunctionComponent<CustomPlaylistDetailProps> = ({
-  id,
-  title,
-  description,
-  userId,
-}) => {
+const CustomPlaylistEdit: FunctionComponent<CustomPlaylistDetailProps> = ({id}) => {
   return (
     <>
       <View style={styles.card}>
-        <Text>{title}</Text>
-        <Text>{description}</Text>
-        <Text>{userId}</Text>
         <Text>{id}</Text>
       </View>
     </>

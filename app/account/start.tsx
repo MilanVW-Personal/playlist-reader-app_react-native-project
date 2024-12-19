@@ -5,7 +5,7 @@ import AccountPage from '@/components/login/accountPage'
 import {Link} from 'expo-router'
 import {Label} from '@react-navigation/elements'
 
-const Start: FunctionComponent = () => {
+const AccountPageStart: FunctionComponent = () => {
   const currentUser = auth.currentUser
 
   return (
@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
     color: '#1ed760',
   }
 })
-export default Start
+export default AccountPageStart
