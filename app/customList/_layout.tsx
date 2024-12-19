@@ -21,6 +21,12 @@ const StackLayoutCustomList: FunctionComponent<_layoutProps> = () => {
             title: "Create new playlist"
           }}
       />
+      <Stack.Screen
+        name="[playlistId]"
+        options={{
+          title: "Edit playlist"
+        }}
+      />
     </Stack>
   )
 }

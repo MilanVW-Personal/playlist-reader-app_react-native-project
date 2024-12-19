@@ -8,7 +8,7 @@ import {
   where,
   getDocs,
   deleteDoc,
-  updateDoc, arrayUnion, arrayRemove,
+  updateDoc, arrayUnion, arrayRemove, getDoc,
 } from '@firebase/firestore'
 import {IPlaylist} from '@/models/IPlaylist'
 
@@ -43,13 +43,13 @@ export const getPlaylistsFromUser = async (userId: string) => {
   return foundPlaylists as IPlaylist[]
 }
 
-// export const updatePlaylist = async (id: string, name: string, description: string) => {
-//   await updateDoc(doc(firestore, "playlists", id) ,{
-//     name: name,
-//     description: description
-//   })
-// }
-//
+export const updatePlaylist = async (id: string, name: string, description: string) => {
+  await updateDoc(doc(firestore, "playlists", id) ,{
+    name: name,
+    description: description
+  })
+}
+
 
 export const deletePlaylist = async (id: string) => {
   console.log("delete")
@@ -71,4 +71,16 @@ export const removeSongFromPlaylist = async (id: string, songId: string) => {
   await updateDoc(ref, {
     songs: arrayRemove(songId), // arrayRemove() zal een item verwijderen uit de songs.
   })
+}
+
+export const getPlaylistById = async (id: string) => {
+  const ref = doc(firestore, "playlists", id); // collectie playlists ophalen
+  const snapshot = await getDoc(ref) // resultaten ophalen
+
+  // Door de snapshot heen mappen en data er uit halen.
+  // console.log("Key:", snapshot.docs.map((doc) => doc.id))
+  return {
+    ...snapshot.data() as IPlaylist,
+    id: snapshot.id,
+  }
 }

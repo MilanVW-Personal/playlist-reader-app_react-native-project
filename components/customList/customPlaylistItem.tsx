@@ -9,16 +9,6 @@ interface CustomPlaylistItemProps extends IPlaylist {
 }
 
 const CustomPlaylistItem: FunctionComponent<CustomPlaylistItemProps> = ({id, title, description, index, songs}) => {
-  // const [songsInList, setSongsInList] = useState<ITrack[]>([])
-  // useEffect(() => {
-  //   const getAllSongs = async () => {
-  //     const allSongs = await getApiKeyAndShowData()
-  //     setSongsInList(allSongs)
-  //   }
-  //
-  //   getAllSongs()
-  // }, [songsInList])
-
   return (
     <>
       <View key={index} style={styles.itemCard}>

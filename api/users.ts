@@ -1,4 +1,4 @@
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from '@firebase/auth'
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile} from '@firebase/auth'
 import {auth, firestore} from '@/api/firebaseConfig'
 import {doc, setDoc} from '@firebase/firestore'
 

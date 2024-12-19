@@ -1,5 +1,5 @@
 import {FunctionComponent, useEffect, useState} from 'react'
-import {Button, Image, Modal, StyleSheet, Text, View} from 'react-native'
+import {Button, Image, StyleSheet, Text, View} from 'react-native'
 import {getTrackDetails} from '@/api/spotifyApi'
 import {ITrack} from '@/models/ITrack'
 import ModalPopUp from '@/components/playlist/modalPopUp'

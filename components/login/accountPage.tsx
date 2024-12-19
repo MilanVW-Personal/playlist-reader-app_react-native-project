@@ -1,6 +1,8 @@
 import {FunctionComponent} from 'react'
-import {StyleSheet, Text, View} from 'react-native'
+import {Button, StyleSheet, Text, View} from 'react-native'
 import {Label} from '@react-navigation/elements'
+import {auth} from '@/api/firebaseConfig'
+import {useRouter} from 'expo-router'
 
 interface AccountPageProps {
   username: string | undefined
@@ -8,6 +10,14 @@ interface AccountPageProps {
 }
 
 const AccountPage: FunctionComponent<AccountPageProps> = ({username, email}) => {
+  const router = useRouter()
+
+  const signOut = async () => {
+    await auth.signOut()
+    alert("Logged out!")
+    router.push('../account/start')
+  }
+
   return (
     <>
       <View style={styles.card}>
@@ -16,6 +26,7 @@ const AccountPage: FunctionComponent<AccountPageProps> = ({username, email}) => 
           {/*Flex*/}
           <Text style={styles.text}>Username: {username}</Text>
           <Text style={styles.text}>Email address: {email}</Text>
+          <Button title={"Logout"} onPress={signOut}/>
         </View>
       </View>
     </>

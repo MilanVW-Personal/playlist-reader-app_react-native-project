@@ -39,7 +39,7 @@ const CustomPlaylist: FunctionComponent = () => {
           userPlaylists.map((pl, i) => {
             return (
               <Suspense fallback={<Text>Loading playlists...</Text>}>
-                <Pressable onPress={() => console.log(pl)}>
+                <Pressable onPress={() => router.push(`../customList/${pl.id}`)} key={i}>
                   <CustomPlaylistItem key={i} index={i} {...pl} />
                 </Pressable>
               </Suspense>
