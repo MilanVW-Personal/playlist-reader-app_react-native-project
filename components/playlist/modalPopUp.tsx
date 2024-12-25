@@ -44,7 +44,7 @@ const ModalPopUp: FunctionComponent<ModalPopUpsProps> = ({onClose, visible, song
               onValueChange={(itemIndex) => changeValue(itemIndex)}>
               {userPlaylists.map((item, index) => {
                 return (
-                  <Picker.Item label={item.title} value={index}/>
+                  <Picker.Item key={index} label={item.title} value={index}/>
                 )
               })}
             </Picker>
