@@ -7,6 +7,7 @@ import {useRouter} from 'expo-router'
 const SongListItem: FunctionComponent<ITrack> = ({artists, title, id}) => {
   const router = useRouter()
 
+
   return (
     <>
       {/* Bij het drukken op een item, zal de id (vanuit interface), worden meegegeven, zodat deze naar de detailpagina zal gaan. */}

@@ -68,10 +68,10 @@ export const addSongToPlaylist = async (id: string, song?: ITrack) => {
   console.log("added: ", ref)
 }
 
-export const removeSongFromPlaylist = async (id: string, songId: string) => {
+export const removeSongFromPlaylist = async (id: string, song: ITrack) => {
   const ref = doc(firestore, "playlists", id); // database ophalen met de playlistId
   await updateDoc(ref, {
-    songs: arrayRemove(songId), // arrayRemove() zal een item verwijderen uit de songs.
+    songs: arrayRemove(song), // arrayRemove() zal een item verwijderen uit de songs.
   })
 }
 

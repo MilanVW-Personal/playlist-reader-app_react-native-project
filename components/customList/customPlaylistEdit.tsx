@@ -1,9 +1,10 @@
 import {FunctionComponent, useState} from 'react'
 import {Button, StyleSheet, Text, TextInput, View} from 'react-native'
 import {ITrack} from '@/models/ITrack'
-import {Label} from '@react-navigation/elements'
-import {updatePlaylist} from '@/api/playlist'
+import {removeSongFromPlaylist, updatePlaylist} from '@/api/playlist'
 import {useRouter} from 'expo-router'
+import {GestureHandlerRootView} from 'react-native-gesture-handler'
+import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable'
 
 interface CustomPlaylistDetailProps {
   id: string
@@ -12,8 +13,7 @@ interface CustomPlaylistDetailProps {
   songs?: ITrack[]
 }
 
-const CustomPlaylistEdit: FunctionComponent<CustomPlaylistDetailProps> = ({id ,titlePlaylist, descriptionPlaylist, songs}) => {
-
+const CustomPlaylistEdit: FunctionComponent<CustomPlaylistDetailProps> = ({id, titlePlaylist, descriptionPlaylist, songs}) => {
   const [newTitle, setNewTitle] = useState<string>(titlePlaylist)
   const [newDesc, setNewDesc] = useState<string>(descriptionPlaylist)
   const router = useRouter()
@@ -21,8 +21,15 @@ const CustomPlaylistEdit: FunctionComponent<CustomPlaylistDetailProps> = ({id ,t
   const submitChanges = async () => {
     await updatePlaylist(id, newTitle, newDesc)
     router.push('..')
-    alert("Playlist updated!")
+    alert('Playlist updated!')
   }
+
+  // Delete knop die bij swipe tevoorschijn komt.
+  const swipeToDeleteSongAction = (songToDelete: ITrack) => (
+    <View style={{backgroundColor: 'red', borderRadius: 5, margin: 5}}>
+      <Text onPress={() => removeSongFromPlaylist(id, songToDelete)}>Delete</Text>
+    </View>
+  )
 
   return (
     <View>
@@ -30,32 +37,32 @@ const CustomPlaylistEdit: FunctionComponent<CustomPlaylistDetailProps> = ({id ,t
         <Text style={styles.screenTitle}>Edit playlist</Text>
         <View style={styles.fields}>
           <Text style={styles.inputLabel}>Playlist title: </Text>
-          <TextInput
-            style={styles.inputField}
-            value={newTitle}
-            onChangeText={setNewTitle}
-          />
+          <TextInput style={styles.inputField} value={newTitle} onChangeText={setNewTitle} />
         </View>
         <View style={styles.fields}>
           <Text style={styles.inputLabel}>Playlist description: </Text>
-          <TextInput
-            style={styles.inputField}
-            value={newDesc}
-            onChangeText={setNewDesc}
-          />
+          <TextInput style={styles.inputField} value={newDesc} onChangeText={setNewDesc} />
         </View>
-        <View style={styles.fields}> {/*Hier komt swipe to delete gesture*/}
-          <Text style={styles.inputLabel}>Songs:  </Text>
+
+        <GestureHandlerRootView style={styles.fields}>
+          {/*Hier komt swipe to delete gesture*/}
+          <Text style={styles.inputLabel}>Songs: </Text>
           {songs?.map((s, index) => {
-            return <Text style={styles.songCardItem} key={index}>{s.title}</Text>
+            return (
+              // Als je hier naar links zou swipen op een item, dan zal deze song verwijderd worden
+              <Swipeable key={index} renderRightActions={() => swipeToDeleteSongAction(s)}>
+                <Text style={styles.songCardItem} key={index}>
+                  {s.title}
+                </Text>
+              </Swipeable>
+            )
           })}
-        </View>
+        </GestureHandlerRootView>
+
         <View style={styles.fields}>
           <Button title={'Submit changes'} onPress={submitChanges} />
         </View>
       </View>
-
-
     </View>
   )
 }
@@ -89,7 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     borderWidth: 0.5,
     width: 'auto',
-    height: 'auto'
+    height: 'auto',
   },
 })
 export default CustomPlaylistEdit
