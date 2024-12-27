@@ -11,6 +11,7 @@ import {
   updateDoc, arrayUnion, arrayRemove, getDoc,
 } from '@firebase/firestore'
 import {IPlaylist} from '@/models/IPlaylist'
+import {ITrack} from '@/models/ITrack'
 
 export const createPlaylist = async (name: string, description: string, userId: string) => {
   const playlistId = userId + '-' + Date.now()
@@ -43,7 +44,7 @@ export const getPlaylistsFromUser = async (userId: string) => {
   return foundPlaylists as IPlaylist[]
 }
 
-export const updatePlaylist = async (id: string, name: string, description: string) => {
+export const updatePlaylist = async (id: string, name?: string, description?: string) => {
   await updateDoc(doc(firestore, "playlists", id) ,{
     name: name,
     description: description
@@ -57,10 +58,11 @@ export const deletePlaylist = async (id: string) => {
   return await deleteDoc(doc(firestore, "playlists", id))
 }
 
-export const addSongToPlaylist = async (id: string, songId: string) => {
+export const addSongToPlaylist = async (id: string, song?: ITrack) => {
   const ref = doc(firestore, "playlists", id); // database ophalen met de playlistId
   await updateDoc(ref, {
-    songs: arrayUnion(songId), // arrayUnion() zal hier items aan de array toevoegen, zonder deze te overschrijven
+    songs: arrayUnion(song), // arrayUnion() zal hier items aan de array toevoegen, zonder deze te overschrijven
+    // song.title gaat ook als je enkel de title wilt opslaan.
   })
 
   console.log("added: ", ref)

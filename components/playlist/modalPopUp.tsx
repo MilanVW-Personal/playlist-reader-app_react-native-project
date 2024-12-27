@@ -6,14 +6,15 @@ import {addSongToPlaylist, getPlaylistsFromUser} from '@/api/playlist'
 import {IPlaylist} from '@/models/IPlaylist'
 import {Label} from '@react-navigation/elements'
 import {useRouter} from 'expo-router'
+import {ITrack} from '@/models/ITrack'
 
 interface ModalPopUpsProps {
   onClose: () => void
   visible: boolean
-  songId: string
+  song: ITrack | undefined
 }
 
-const ModalPopUp: FunctionComponent<ModalPopUpsProps> = ({onClose, visible, songId}) => {
+const ModalPopUp: FunctionComponent<ModalPopUpsProps> = ({onClose, visible, song}) => {
   
   const currentUser = auth.currentUser
   const [userPlaylists, setUserPlaylists] = useState<IPlaylist[]>([])
@@ -49,7 +50,7 @@ const ModalPopUp: FunctionComponent<ModalPopUpsProps> = ({onClose, visible, song
               })}
             </Picker>
             <Button title={"Add to selected playlist"} onPress={async () => {
-              await addSongToPlaylist(userPlaylists[value].id, songId)
+              await addSongToPlaylist(userPlaylists[value].id, song)
               router.push("..")
             }}/>
           </View>
