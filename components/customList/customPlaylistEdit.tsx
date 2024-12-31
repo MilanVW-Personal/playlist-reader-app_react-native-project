@@ -1,10 +1,11 @@
-import {FunctionComponent, useEffect, useState} from 'react'
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native'
+import {FunctionComponent, useState} from 'react'
+import {Button, Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
 import {ITrack} from '@/models/ITrack'
 import {removeSongFromPlaylist, updatePlaylist} from '@/api/playlist'
 import {useRouter} from 'expo-router'
 import {GestureHandlerRootView} from 'react-native-gesture-handler'
 import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable'
+import {FontAwesome5} from '@expo/vector-icons'
 
 interface CustomPlaylistDetailProps {
   id: string
@@ -26,8 +27,11 @@ const CustomPlaylistEdit: FunctionComponent<CustomPlaylistDetailProps> = ({id, t
 
   // Delete knop die bij swipe tevoorschijn komt.
   const swipeToDeleteSongAction = (songToDelete: ITrack) => (
-    <View style={{backgroundColor: 'red', borderRadius: 5, margin: 5}}>
-      <Text onPress={() => removeSongFromPlaylist(id, songToDelete)}>Delete</Text>
+    // de OnPress kan ook zonder async await...
+    <View style={styles.deleteButtonSwipe}>
+      <Pressable onPress={async () => await removeSongFromPlaylist(id, songToDelete)}>
+          <FontAwesome5 name={"trash"} style={{textAlign: 'center'}} />
+      </Pressable>
     </View>
   )
 
@@ -45,7 +49,7 @@ const CustomPlaylistEdit: FunctionComponent<CustomPlaylistDetailProps> = ({id, t
         </View>
 
         <GestureHandlerRootView style={styles.fields}>
-          {/*Hier komt swipe to delete gesture*/}
+          {/*Hier staat de swipe to delete gesture*/}
           <Text style={styles.inputLabel}>Songs: </Text>
           {songs?.map((s, index) => {
             return (
@@ -98,5 +102,14 @@ const styles = StyleSheet.create({
     width: 'auto',
     height: 'auto',
   },
+  deleteButtonSwipe: {
+    backgroundColor: 'red',
+    borderRadius: 5,
+    margin: 5,
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: "center"
+  }
 })
 export default CustomPlaylistEdit
