@@ -10,4 +10,5 @@ export interface ITrack {
     popularity: number
     explicit: boolean
     currentPosition: number
+    webURL: string
 }

@@ -1,32 +1,48 @@
 import {FunctionComponent} from 'react'
-import {StyleSheet, View} from 'react-native'
+import {Share, StyleSheet, View} from 'react-native'
 import {Label} from '@react-navigation/elements'
 import {ITrack} from '@/models/ITrack'
 import {useRouter} from 'expo-router'
-import ShareModule from '@/components/shareModule'
 import {Gesture, GestureDetector, GestureHandlerRootView} from 'react-native-gesture-handler'
 import {runOnJS} from 'react-native-reanimated'
 
-const SongListItem: FunctionComponent<ITrack> = ({artists, title, id}) => {
+const SongListItem: FunctionComponent<ITrack> = ({artists, title, id, webURL}) => {
   const router = useRouter()
 
+  /* Deze functie zal ervoor zorgen dat er een share-menu op het scherm wordt getoond, waarin je de url van de song zal kunnen delen */
+  const shareSongLink = async () => {
+    const result = await Share.share({
+      title: 'Listen to this!',
+      message: webURL,
+    })
+
+    if (result.action == Share.sharedAction) {
+      if (result.activityType) console.log('shared w/ ', result.activityType)
+      else console.log('Shared!')
+    } else if (result.action === Share.dismissedAction) {
+      console.log('Cancelled share')
+    }
+  }
+
+  // Functie die een single tap gesture zal uitvoeren
   const doSingleTap = () => {
     router.push(`../playlist/${id}`)
   }
 
-  const doDoubleTap = () => {
-    console.log('double tap')
-
+  // Functie die een double tap gesture zal uitvoeren
+  const doDoubleTap = async () => {
+    await shareSongLink() // hier zal de share functie worden uitgevoerd
   }
-  const singleTap = Gesture.Tap()
+
+  const singleTap = Gesture.Tap() // hier zal de single tap worden geregistreerd
     .numberOfTaps(1) // hoeft er niet perse te staan
     .onEnd(() => runOnJS(doSingleTap)())
 
-  const doubleTap = Gesture.Tap()
+  const doubleTap = Gesture.Tap() // hier zal de double tap worden geregistreerd
     .numberOfTaps(2)
     .onEnd(() => runOnJS(doDoubleTap)())
 
-  const tapGesture = Gesture.Exclusive(doubleTap, singleTap)
+  const tapGesture = Gesture.Exclusive(doubleTap, singleTap) // De gestures exclusive maken door ze in één gesture te stoppen, die wordt gebruikt bij de GestureDetector
 
   return (
     <>

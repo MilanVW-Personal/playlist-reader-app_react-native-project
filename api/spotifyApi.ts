@@ -61,7 +61,8 @@ const getTodayTopSongs = async (api_key: string) : Promise<ITrack[]> => {
           imageUrl: track.track.album.images[0].url,
           popularity: track.track.popularity,
           explicit: track.track.explicit,
-          currentPosition: i + 1
+          currentPosition: i + 1,
+          webURL: track.track.external_urls.spotify,
         })
       }))
 
