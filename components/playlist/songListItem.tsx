@@ -1,22 +1,44 @@
 import {FunctionComponent} from 'react'
-import {Pressable, StyleSheet, View} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {Label} from '@react-navigation/elements'
 import {ITrack} from '@/models/ITrack'
 import {useRouter} from 'expo-router'
+import ShareModule from '@/components/shareModule'
+import {Gesture, GestureDetector, GestureHandlerRootView} from 'react-native-gesture-handler'
+import {runOnJS} from 'react-native-reanimated'
 
 const SongListItem: FunctionComponent<ITrack> = ({artists, title, id}) => {
   const router = useRouter()
 
+  const doSingleTap = () => {
+    router.push(`../playlist/${id}`)
+  }
+
+  const doDoubleTap = () => {
+    console.log('double tap')
+
+  }
+  const singleTap = Gesture.Tap()
+    .numberOfTaps(1) // hoeft er niet perse te staan
+    .onEnd(() => runOnJS(doSingleTap)())
+
+  const doubleTap = Gesture.Tap()
+    .numberOfTaps(2)
+    .onEnd(() => runOnJS(doDoubleTap)())
+
+  const tapGesture = Gesture.Exclusive(doubleTap, singleTap)
 
   return (
     <>
       {/* Bij het drukken op een item, zal de id (vanuit interface), worden meegegeven, zodat deze naar de detailpagina zal gaan. */}
-      <Pressable onPress={() => router.push(`../playlist/${id}`)} style={styles.container}>
-        <View>
-          <Label style={styles.songTitle}>{title}</Label>
-          <Label style={styles.songArtist}>{artists.map(a => a.name).join(', ')}</Label>
-        </View>
-      </Pressable>
+      <GestureHandlerRootView style={styles.container}>
+        <GestureDetector gesture={tapGesture}>
+          <View>
+            <Label style={styles.songTitle}>{title}</Label>
+            <Label style={styles.songArtist}>{artists.map(a => a.name).join(', ')}</Label>
+          </View>
+        </GestureDetector>
+      </GestureHandlerRootView>
     </>
   )
 }
