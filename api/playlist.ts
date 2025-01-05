@@ -49,6 +49,8 @@ export const updatePlaylist = async (id: string, name?: string, description?: st
     name: name,
     description: description
   })
+
+  // gegevens worden wel geupdatet in de database maar niet op het scherm...
 }
 
 

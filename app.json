@@ -33,6 +33,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "70a936fe-2e28-4c80-884e-4f468689ea4a"
+      }
+    },
+    "owner": "milanvw1"
   }
 }

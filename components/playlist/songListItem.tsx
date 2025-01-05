@@ -1,5 +1,5 @@
 import {FunctionComponent} from 'react'
-import {Share, StyleSheet, View} from 'react-native'
+import {Share, StyleSheet, View} from 'react-native' // Share is hier mijn eerste native module
 import {Label} from '@react-navigation/elements'
 import {ITrack} from '@/models/ITrack'
 import {useRouter} from 'expo-router'

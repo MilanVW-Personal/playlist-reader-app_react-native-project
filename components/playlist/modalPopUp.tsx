@@ -40,7 +40,7 @@ const ModalPopUp: FunctionComponent<ModalPopUpsProps> = ({onClose, visible, song
         <View style={styles.outerView}>
           <View style={styles.innerView}>
             <Label style={styles.titleModal}>Choose a playlist</Label>
-            <Picker
+            <Picker // Picker is hier mijn 2de native module samen met de Share
               selectedValue={value}
               onValueChange={(itemIndex) => changeValue(itemIndex)}>
               {userPlaylists.map((item, index) => {

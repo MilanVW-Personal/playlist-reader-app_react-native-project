@@ -20,7 +20,7 @@ const CustomPlaylistEdit: FunctionComponent<CustomPlaylistDetailProps> = ({id, t
   const router = useRouter()
 
   const submitChanges = async () => {
-    await updatePlaylist(id, newTitle, newDesc)
+    await updatePlaylist(id, newTitle, newDesc) // na submitten zal de data in de firebase collectie wel aanpassen, maar niet op het scherm
     router.push('..')
     alert('Playlist updated!')
   }

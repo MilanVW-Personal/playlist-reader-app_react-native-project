@@ -3,6 +3,7 @@ import {Button, Image, StyleSheet, Text, View} from 'react-native'
 import {getTrackDetails} from '@/api/spotifyApi'
 import {ITrack} from '@/models/ITrack'
 import ModalPopUp from '@/components/playlist/modalPopUp'
+import {auth} from '@/api/firebaseConfig'
 
 interface SongListDetailProps {
   id: string
@@ -11,7 +12,7 @@ interface SongListDetailProps {
 const SongListDetail: FunctionComponent<SongListDetailProps> = ({id}) => {
   const [detailsSong, setDetailsSong] = useState<ITrack>()
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
-
+  const currentUser = auth.currentUser
 
   // console.log(id)
 
@@ -58,12 +59,9 @@ const SongListDetail: FunctionComponent<SongListDetailProps> = ({id}) => {
           <Text>{detailsSong?.popularity}%</Text>
         </View>
 
-        <Button
-          title={'Add song to custom playlist'}
-          onPress={() => setModalIsOpen(true)}
-
-        />
-        <ModalPopUp onClose={() => setModalIsOpen(false)} visible={modalIsOpen} song={detailsSong}/>
+        {/*Als de user niet ingelogd is krijgt 'ie deze knop niet te zien*/}
+        {currentUser !== null && <Button title={'Add song to custom playlist'} onPress={() => setModalIsOpen(true)} />}
+        <ModalPopUp onClose={() => setModalIsOpen(false)} visible={modalIsOpen} song={detailsSong} />
       </View>
     </>
   )

@@ -1,5 +1,5 @@
 import {FunctionComponent, useState} from 'react'
-import {Button, KeyboardAvoidingView, StyleSheet, TextInput} from 'react-native'
+import {KeyboardAvoidingView, StyleSheet, TextInput} from 'react-native'
 import {Label} from '@react-navigation/elements'
 import {login} from '@/api/users'
 import {Link, useRouter} from 'expo-router'
@@ -22,8 +22,15 @@ const LoginForm: FunctionComponent = () => {
         <Label style={styles.labelInput}>Enter your email: </Label>
         <TextInput placeholder="Enter your email" style={styles.inputField} onChangeText={setEmail} />
         <Label style={styles.labelInput}>Enter your password: </Label>
-        <TextInput placeholder="Enter your password" style={styles.inputField} onChangeText={setPassword} secureTextEntry />
-        <Link style={[styles.linkStyle, styles.button]} href={".."} onPress={submitLogin}>Login</Link>
+        <TextInput
+          placeholder="Enter your password"
+          style={styles.inputField}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+        <Link style={[styles.linkStyle, styles.button]} href={'..'} onPress={submitLogin}>
+          Login
+        </Link>
       </KeyboardAvoidingView>
     </>
   )
@@ -37,7 +44,6 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     fontSize: 15,
     fontWeight: 'bold',
-
   },
   card: {
     borderWidth: 2,
@@ -57,7 +63,7 @@ const styles = StyleSheet.create({
     width: 'auto',
     height: '25%',
     margin: 10,
-    backgroundColor: '#1ed760'
+    backgroundColor: '#1ed760',
   },
   cardTitle: {
     fontSize: 20,
@@ -79,8 +85,8 @@ const styles = StyleSheet.create({
     margin: 5,
     color: 'black',
     padding: 5,
-    borderRadius: 2
-  }
+    borderRadius: 2,
+  },
 })
 
 export default LoginForm
