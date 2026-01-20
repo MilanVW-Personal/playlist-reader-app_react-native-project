@@ -6,8 +6,8 @@ let apiKey = ""
 // Deze functie zal de API-key ophalen en de data uitlezen in de console.
 // Als de component, die bij opstarten ingeladen wordt, geladen is, dan zal deze functie opgeroepen worden.
 export const getApiKeyAndShowData = async (): Promise<ITrack[]> => {
-  const clientId = "cba5151df6664a6bad0e4a5385ee6ba3"; // clientId van het project
-  const clientSecret = "f39d3f39c74247b3a97f5ba937ee0adc"; // clientSecret van het project
+  const clientId = process.env.EXPO_PUBLIC_SPOTIFY_CLIENT_ID; // clientId van het project
+  const clientSecret = process.env.EXPO_PUBLIC_SPOTIFY_CLIENT_SECRET; // clientSecret van het project
   const tokenLink = "https://accounts.spotify.com/api/token" // url voor de token op te halen
 
   await fetch(tokenLink, {
