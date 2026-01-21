@@ -36,7 +36,7 @@ Als ik deze app later volledig af zou maken en echt zou uitbrengen, is het eerst
         Dit tweede scherm, is zoals al eerder vermeld, de detailpagina van een song vanop het eerste scherm.
         Hier zul je onder andere de song / album-cover van het lied kunnen zien, samen met de artiesten, de lengte van de song, of het liedje expliciet is of niet (scheldwoorden gebruikt of niet), huidige positie van de song...
         Zoals hierboven vermeld, is de layout puur voor de werking te testen en zal zeker nog veranderen bij een eventuele release. 
-        Op deze pagina staat ook een knop waarmee je het lied in kwestie kunt toevoegen aan je eigen playlist, die je kunt aanmaken als je bent ingelogd.
+        Op deze pagina staat ook een knop waarmee je het lied in kwestie kunt toevoegen aan je eigen playlist, die je kunt aanmaken als je bent ingelogd. Als je niet bent ingelogd, dan krijg je deze knop niet te zien.
       </p>
       <ul>
         <li><strong>Interactie:</strong> Door op de knop '...' te drukken krijg je een lijst met je eigen gemaakt playlists. </li>
@@ -47,31 +47,77 @@ Als ik deze app later volledig af zou maken en echt zou uitbrengen, is het eerst
 </table>
 
 ## Scherm 3
-![img.png](screenshots-pe/scherm3-1.png)
-![img.png](screenshots-pe/scherm3-2.png)
-![img.png](screenshots-pe/scherm3-3.png)
-
-**Uitleg screenshot:**
-Het derde scherm zal enkel beschikbaar zijn als je bent ingelogd met een account. Als dit het geval is,
-dan zal je de eerste foto te zien krijgen. Je krijgt een knop te zien met een tekst 'No playlists'. 
-Uiteraard, zal er, als je op de knop drukt, een playlist worden gemaakt, voorlopig met test-data. 
-Later zal dit naar een create-pagina gaan om zo een playlist aan te maken (zie scherm 4)' 
-Zodra er een playlist wordt aangemaakt, zal de tekst veranderd worden en zal je de tweede foto te zien krijgen.
-Je zal een kruisje te zien krijgen bij de playlist, als je hierop zou drukken dan zal de playlist ook verwijderd worden uit de lijst.
-Indien mogelijk, kan er eventueel nog een popup komen die vraagt of je de playlist weldegelijk wilt verwijderen, een soort bevestiging dus.
-
-Als je niet zou zijn ingelogd dan krijg je de derde foto te zien waarop tekst staat die zegt dat je moet ingelogd zijn.
+<table>
+  <tr>
+    <td width="300">
+      <img src="screenshots-pe/scherm3-1.png" width="300" alt="scherm2-detail">
+    </td>
+    <td style="vertical-align: top;">
+      <h3>Uitleg screenshot: </h3>
+      <p>
+        Het derde scherm zal enkel beschikbaar zijn als je bent ingelogd met een account. Als dit het geval is,
+        dan zal je dit scherm te zien krijgen. Omdat er nu nog geen playlists zijn aangemaakt staat er 'No playlists'.
+        Uiteraard, als je op de knop eronder zou drukken, dan zal je naar het scherm 4 gestuurd worden. 
+      </p>
+      <ul>
+        <li><strong>Interactie:</strong> Door op de knop 'Create new playlist' te drukken zal je een nieuwe playlist kunnen toevoegen a.d.h.v. een form.</li>
+        <li><strong>Navigatie:</strong> Door onderaan op een van de iconen te drukken, zal je naar de bijhorende pagina gebracht worden.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="300">
+      <img src="screenshots-pe/scherm3-2.png" width="300" alt="scherm2-detail">
+    </td>
+    <td style="vertical-align: top;">
+      <h3>Uitleg screenshot: </h3>
+      <p>
+        Zodra er een playlist wordt aangemaakt, zal je dit scherm te zien krijgen.
+        Je zal een kruisje te zien krijgen bij de playlist, als je hierop zou drukken dan zal de playlist ook verwijderd worden uit de lijst.
+        Bij het aanmaken van een playlist zal je een alert krijgen, die bevestigt dat het aanmaken gelukt is.
+      </p>
+      <ul>
+        <li><strong>Interactie:</strong> Door op de knop 'Create new playlist' te drukken zal je een nieuwe playlist kunnen toevoegen a.d.h.v. een form.</li>
+        <li><strong>Navigatie:</strong> Door onderaan op een van de iconen te drukken, zal je naar de bijhorende pagina gebracht worden.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="300">
+      <img src="screenshots-pe/scherm3-3.png" width="300" alt="scherm2-detail">
+    </td>
+    <td style="vertical-align: top;">
+      <h3>Uitleg screenshot: </h3>
+      <p>
+        Als je niet zou zijn ingelogd dan krijg je dit scherm te zien waarop tekst staat die zegt dat je moet ingelogd zijn.
+      </p>
+      <ul>
+        <li><strong>Navigatie:</strong> Door onderaan op een van de iconen te drukken, zal je naar de bijhorende pagina gebracht worden.</li>
+      </ul>
+    </td>
+</table>
 
 ## Scherm 4
-
-![img.png](screenshots-pe/scherm4.png)
-
-**Uitleg screenshot:**
-Dit 4de scherm is de create pagina van de playlists, waar je het form kunt invullen.
-Dit formulier bestaat dus uit een titel en een beschrijving van de playlist, die ook in de interface van IPlaylist, worden meegegeven,
-zodat er objecten met deze properties kunnen gemaakt worden. De styling van het formulier is nog niet finaal, maar verandert zeker nog.
-Je ziet ook een knop onderaan de pagina genaamd 'Submit', dit zal simpelweg de functie 'createPlaylist' uitvoeren (zie playlist.ts), en zal ook gebruik maken van de 'useRouting' hook 
-om te navigeren naar de vorige pagina '..'.
+<table>
+  <tr>
+    <td width="300">
+      <img src="screenshots-pe/scherm4.png" width="300" alt="scherm2-detail">
+    </td>
+    <td style="vertical-align: top;">
+      <h3>Uitleg screenshot: </h3>
+      <p>
+        Dit 4de scherm is de create pagina van de playlists, waar je het formulier kunt invullen.
+        Dit formulier bestaat dus uit een titel en een beschrijving van de playlist, die ook in de interface van IPlaylist, worden meegegeven,
+        zodat er objecten met deze properties kunnen gemaakt worden. Hier is, zoals al eerder gezegd, de styling niet op en top, maar voor een mogelijke release toe ben ik wel van plan om dit wat aangenamer te maken.
+        Je ziet ook een knop onderaan de pagina genaamd 'Submit', dit zal simpelweg de functie 'createPlaylist' uitvoeren (zie playlist.ts), en zal ook gebruik maken van de 'useRouting' hook 
+        om te navigeren naar de vorige pagina '..'.
+      </p>
+      <ul>
+        <li><strong>Interactie:</strong> Door op de knop 'Submit' te drukken, maak je een nieuwe playlist aan en wordt je teruggestuurd naar de overzichtspagina van scherm 3</li>
+        <li><strong>Navigatie:</strong> Door onderaan op een van de iconen te drukken, zal je naar de bijhorende pagina gebracht worden. Door op het pijltje rechtsboven te klikken, wordt je terug naar scherm 3 gebracht.</li>
+      </ul>
+    </td>
+</table>
 
 ## Scherm 5
 ![img.png](screenshots-pe/scherm5-1.png)

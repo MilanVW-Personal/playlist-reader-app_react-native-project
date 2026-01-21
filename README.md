@@ -2,7 +2,7 @@
 ## Korte uitleg
 Deze repository bevat alle code en files voor mijn react-native project, dat ik destijds voor het vak 'Mobile Development' heb moeten maken. 
 Met deze README wil ik een duidelijker beeld schetsen van hoe de app in elkaar zit en hoe deze precies werkt. 
-Om een duidelijker beeld te krijgen wat elk scherm en functionaliteit doet, kunt u het bestand [hier](PE.md) of bij 'Functionaliteiten' raadplegen.
+Om een duidelijker beeld te krijgen wat elk scherm en functionaliteit doet, kunt u het bestand [hier](functionaliteiten.md) of bij 'Functionaliteiten' raadplegen.
 
 ## Wat is dit project?
 Dit project is een mobiele applicatie, gemaakt met react-native en met behulp van Expo. 
@@ -35,5 +35,5 @@ Ik ben met dit project gestart eind november 2024 en heb er, zonder de recente a
 
 ## Functionaliteiten
 Zoals ik al eerder aangaf, staan alle schermen en andere functionaliteiten van de app in een apart bestand uitgelegd.
-Zoals hierboven kun je dit bestand via [deze link](PE.md) bereiken. 
+Zoals hierboven kun je dit bestand via [deze link](functionaliteiten.md) bereiken. 
 Ik hoop dat deze schermen je een iets of wat duidelijk beeld geven hoe de app precies in elkaar zit. 
