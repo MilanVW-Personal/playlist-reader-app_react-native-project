@@ -1,26 +1,50 @@
-# Permanente evaluatie
-
-**Vul hieronder verder aan zoals beschreven in de [projectopgave](https://javascript.pit-graduaten.be/evaluatie/mobile/pe.html).**
+# Functionaliteiten
+Ik ben me ervan bewust dat de app er op dit moment nog niet "af" uitziet. 
+De huidige interface is vooral bedoeld om alle functies goed te kunnen testen en de data overzichtelijk te tonen. 
+Als ik deze app later volledig af zou maken en echt zou uitbrengen, is het eerste wat ik doe de look-and-feel aanpakken om de app modern en aantrekkelijk te maken.
 
 ## Scherm 1
+<table>
+  <tr>
+    <td width="300">
+      <img src="screenshots-pe/scherm1.png" width="300" alt="startscherm">
+    </td>
+    <td style="vertical-align: top;">
+      <p>
+        Dit eerste scherm is het startscherm van de applicatie. 
+        Op het scherm, wordt er via de Spotify-API (zie online services), de playlist 'Ultratop 50 Singles - Vlaanderen' opgehaald,
+        waarna deze op het scherm worden getoond in een apart blok.
+      </p>
+      <ul>
+        <li><strong>Interactie:</strong> Door te scrollen naar beneden, kun je de rest van de songs bekijken in de playlist.</li>
+        <li><strong>Navigatie:</strong> Door op een item te drukken kun je naar de detailpagina gaan waar de details van de gekozen song worden getoond. </li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-![img.png](screenshots-pe/scherm1.png)
-
-**Uitleg screenshot:**
-Dit eerste scherm zal het startscherm van de applicatie worden. 
-Op het scherm, wordt er via de Spotify-API (zie online services), de playlist 'Ultratop 50 Singles - Vlaanderen' opgehaald,
-waarna deze op het scherm worden getoond in een apart item (zoals op screenshot, de styling van de items is tijdelijk, kan later nog veranderen).
-Het is ook mogelijk om te scrollen om naar beneden om de rest van de items te bekijken, die in de playlist zitten. 
-Het is ook mogelijk om op een item te drukken om naar een detailpagina (scherm 2) te gaan waar de details worden getoond van de song die je hebt gekozen.
 
 ## Scherm 2
-
-![img.png](screenshots-pe/scherm2.png)
-
-**Uitleg screenshot:**
-Dit tweede scherm, is zoals al eerder vermeld, de detailpagina van een item vanop het eerste scherm.
-Hier zul je onder andere de foto van het lied kunnen zien, samen met de artiesten, de lengte van de song, of het liedje expliciet is of niet (scheldwoorden gebruikt of niet), huidige positie van de song...
-De layout hoe het er nu uit ziet is tijdelijk en zal zeker nog veranderen. Op deze pagina zal ook een knop staan om het lied in kwestie toe te voegen aan je eigen playlist, die je zal kunnen maken als je bent ingelogd 
+<table>
+  <tr>
+    <td width="300">
+      <img src="screenshots-pe/scherm2.png" width="300" alt="scherm2-detail">
+    </td>
+    <td style="vertical-align: top;">
+      <h3>Uitleg screenshot: </h3>
+      <p>
+        Dit tweede scherm, is zoals al eerder vermeld, de detailpagina van een song vanop het eerste scherm.
+        Hier zul je onder andere de song / album-cover van het lied kunnen zien, samen met de artiesten, de lengte van de song, of het liedje expliciet is of niet (scheldwoorden gebruikt of niet), huidige positie van de song...
+        Zoals hierboven vermeld, is de layout puur voor de werking te testen en zal zeker nog veranderen bij een eventuele release. 
+        Op deze pagina staat ook een knop waarmee je het lied in kwestie kunt toevoegen aan je eigen playlist, die je kunt aanmaken als je bent ingelogd.
+      </p>
+      <ul>
+        <li><strong>Interactie:</strong> Door op de knop '...' te drukken krijg je een lijst met je eigen gemaakt playlists. </li>
+        <li><strong>Navigatie:</strong> Door op het pijltje linksboven te drukken, zal je worden teruggestuurd naar de startpagina. Na een song te hebben toegevoegd aan een playlist, zal je ook naar de startpagina worden teruggestuurd.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ## Scherm 3
 ![img.png](screenshots-pe/scherm3-1.png)
@@ -107,10 +131,3 @@ Ik wil zeker nog wel een 2de online service gebruiken, maar ik ben nog niet zeke
 Voorlopig heb ik nog niet echt een concreet idee hoe ik gestures en animaties wil toevoegen, maar 
 ik denk dat ik deze tegen het einde wil invoegen, nadat al de rest al is gemaakt. Een ideetje is misschien
 om per item op de playlist pagina, een swipe-gesture toe te voegen, om zo een item te verwijderen, meer opties te tonen (edit, delete)...
-
-# Feedback
-
-Het project is goed beschreven en volgens mij wel realistisch, maar ook wel uitgebreid. 
-Leg vooral de nadruk op onderdelen waar ik punten op kan geven. Veel schermen is veel werk, als je daarom geen gestures hebt, is dat heel jammer. 
-
-
