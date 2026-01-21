@@ -11,13 +11,13 @@ Als ik deze app later volledig af zou maken en echt zou uitbrengen, is het eerst
     </td>
     <td style="vertical-align: top;">
       <p>
-        Dit eerste scherm is het startscherm van de applicatie. 
-        Op het scherm, wordt er via de Spotify-API (zie online services), de playlist 'Ultratop 50 Singles - Vlaanderen' opgehaald,
-        waarna deze op het scherm worden getoond in een apart blok.
+        Dit eerste scherm is het startscherm van de applicatie en vormt vrijwel de "basis" van de app. 
+        Via een koppeling met de <strong>Spotify API</strong> wordt de actuele playlist 'Ultratop 50 Singles - Vlaanderen' opgehaald. De data wordt dynamisch gerenderd in een overzichtelijke lijst.
       </p>
       <ul>
-        <li><strong>Interactie:</strong> Door te scrollen naar beneden, kun je de rest van de songs bekijken in de playlist.</li>
-        <li><strong>Navigatie:</strong> Door op een item te drukken kun je naar de detailpagina gaan waar de details van de gekozen song worden getoond. </li>
+        <li><strong>Interactie:</strong> Gebruikers kunnen door de lijst scrollen om de volledige top 50 te verkennen.</li>
+        <li><strong>Navigatie:</strong> Bij het selecteren van een bepaalde song wordt de gebruiker doorgeleid naar de specifieke detailpagina. </li>
+        <li><strong>API-werking:</strong> Deze app communiceert rechtsstreeks met de Spotify API om alle data op te halen. In het bestand <code>api/spotifyApi.ts</code> staan alle herbruikbare functies die ik doorheen de hele applicatie oproep.</li>
       </ul>
     </td>
   </tr>
@@ -33,14 +33,13 @@ Als ik deze app later volledig af zou maken en echt zou uitbrengen, is het eerst
     <td style="vertical-align: top;">
       <h3>Uitleg screenshot: </h3>
       <p>
-        Dit tweede scherm, is zoals al eerder vermeld, de detailpagina van een song vanop het eerste scherm.
-        Hier zul je onder andere de song / album-cover van het lied kunnen zien, samen met de artiesten, de lengte van de song, of het liedje expliciet is of niet (scheldwoorden gebruikt of niet), huidige positie van de song...
-        Zoals hierboven vermeld, is de layout puur voor de werking te testen en zal zeker nog veranderen bij een eventuele release. 
+        De detailpagina biedt een diepgaandere blik op de geselecteerde song. Hier worden metadata zoals de album-cover, artiestinformatie, tracklengte en de 'explicit' status getoond. Dit scherm dient eveneens ook als verificatie ofdat de API-data correct wordt opgeroepen en toegewezen.
         Op deze pagina staat ook een knop waarmee je het lied in kwestie kunt toevoegen aan je eigen playlist, die je kunt aanmaken als je bent ingelogd. Als je niet bent ingelogd, dan krijg je deze knop niet te zien.
       </p>
       <ul>
-        <li><strong>Interactie:</strong> Door op de knop '...' te drukken krijg je een lijst met je eigen gemaakt playlists. </li>
-        <li><strong>Navigatie:</strong> Door op het pijltje linksboven te drukken, zal je worden teruggestuurd naar de startpagina. Na een song te hebben toegevoegd aan een playlist, zal je ook naar de startpagina worden teruggestuurd.</li>
+        <li><strong>Voorwaardelijke-rendering: </strong>De knop om een song aan een playlist toe te voegen is enkel zichtbaar voor ingelogde gebruikers, wat zorgt voor een gepersonaliseerde interface.</li>
+        <li><strong>Interactie:</strong> Via de toevoeg-knop kan de gebruiker de song toevoegen aan een eigen playlist in de <strong>Firestore database.</strong> Dit gebeurt via een modal (<code>app/components/playlist/modalPopUp.ts</code>) die een overzicht toont van alle beschikbare playlists. Indien de gebruiker nog geen playlists heeft aangemaakt, zal de <code>Picker</code> component leeg blijven.</li>
+        <li><strong>Navigatie:</strong> De 'Back'-button en automatische redirects na een succesvolle actie zorgen voor een vlotte user flow terug naar de startpagina.</li>
       </ul>
     </td>
   </tr>
@@ -50,49 +49,45 @@ Als ik deze app later volledig af zou maken en echt zou uitbrengen, is het eerst
 <table>
   <tr>
     <td width="300">
-      <img src="screenshots-pe/scherm3-1.png" width="300" alt="scherm2-detail">
+      <img src="screenshots-pe/scherm3-1.png" width="300" alt="scherm3-playlists-ingelogd">
     </td>
     <td style="vertical-align: top;">
       <h3>Uitleg screenshot: </h3>
       <p>
-        Het derde scherm zal enkel beschikbaar zijn als je bent ingelogd met een account. Als dit het geval is,
-        dan zal je dit scherm te zien krijgen. Omdat er nu nog geen playlists zijn aangemaakt staat er 'No playlists'.
-        Uiteraard, als je op de knop eronder zou drukken, dan zal je naar het scherm 4 gestuurd worden. 
+        Dit scherm toont het overzicht van persoonlijke playlists voor ingelogde gebruikers. Wanneer er nog geen data aanwezig is en dus nog geen playlists zijn aangemaakt, krijgt de gebruiker een 'No playlists' melding te zien met een directe optie om een eerste playlist aan te maken.
       </p>
       <ul>
-        <li><strong>Interactie:</strong> Door op de knop 'Create new playlist' te drukken zal je een nieuwe playlist kunnen toevoegen a.d.h.v. een form.</li>
+        <li><strong>Interactie:</strong> De 'Create new playlist' knop leidt de gebruiker naar het invulformulier van scherm 4 om een nieuwe playlist toe te kunnen voegen.</li>
         <li><strong>Navigatie:</strong> Door onderaan op een van de iconen te drukken, zal je naar de bijhorende pagina gebracht worden.</li>
       </ul>
     </td>
   </tr>
   <tr>
     <td width="300">
-      <img src="screenshots-pe/scherm3-2.png" width="300" alt="scherm2-detail">
+      <img src="screenshots-pe/scherm3-2.png" width="300" alt="scherm3-playlists-overzicht">
     </td>
     <td style="vertical-align: top;">
       <h3>Uitleg screenshot: </h3>
       <p>
-        Zodra er een playlist wordt aangemaakt, zal je dit scherm te zien krijgen.
-        Je zal een kruisje te zien krijgen bij de playlist, als je hierop zou drukken dan zal de playlist ook verwijderd worden uit de lijst.
-        Bij het aanmaken van een playlist zal je een alert krijgen, die bevestigt dat het aanmaken gelukt is.
+        Zodra er playlists zijn aangemaakt, worden deze hier dynamisch getoond. Gebruikers kunnen hun collectie van playlists beheren door playlists te verwijderen via het 'X'-icoon rechtsbovenaan een playlist, waarbij de lijst onmiddellijk wordt bijgewerkt in de UI.
       </p>
       <ul>
-        <li><strong>Interactie:</strong> Door op de knop 'Create new playlist' te drukken zal je een nieuwe playlist kunnen toevoegen a.d.h.v. een form.</li>
-        <li><strong>Navigatie:</strong> Door onderaan op een van de iconen te drukken, zal je naar de bijhorende pagina gebracht worden.</li>
+        <li><strong>Interactie:</strong> Bij het succesvol aanmaken van een playlist krijgt de gebruiker een bevestiging via een alert, wat zorgt voor duidelijke feedback.</li>
+        <li><strong>CRUD-functies:</strong> Dit scherm demonstreert de 'Read' en 'Delete' functionaliteiten binnen de app.</li>
       </ul>
     </td>
   </tr>
   <tr>
     <td width="300">
-      <img src="screenshots-pe/scherm3-3.png" width="300" alt="scherm2-detail">
+      <img src="screenshots-pe/scherm3-3.png" width="300" alt="scherm3-playlists-niet_ingelogd">
     </td>
     <td style="vertical-align: top;">
       <h3>Uitleg screenshot: </h3>
       <p>
-        Als je niet zou zijn ingelogd dan krijg je dit scherm te zien waarop tekst staat die zegt dat je moet ingelogd zijn.
+        Omdat ik als vereiste met authenticatie moest werken, is dit scherm afgeschermd voor niet-ingelogde gebruikers. Zij krijgen een duidelijke melding te zien dat authenticatie vereist is om playlists te kunnen bekijken of aanmaken. Ze moeten met andere woorden eerst inloggen met hun account voor ze iets kunnen doen in de applicatie.
       </p>
       <ul>
-        <li><strong>Navigatie:</strong> Door onderaan op een van de iconen te drukken, zal je naar de bijhorende pagina gebracht worden.</li>
+        <li><strong>Authenticatie:</strong> De app controleert de authenticatiestatus van de gebruiker voordat de data-ophaalfuncties van de playlists vanuit de <strong>Firestore database</strong> worden aangeroepen.</li>
       </ul>
     </td>
 </table>
@@ -101,60 +96,99 @@ Als ik deze app later volledig af zou maken en echt zou uitbrengen, is het eerst
 <table>
   <tr>
     <td width="300">
-      <img src="screenshots-pe/scherm4.png" width="300" alt="scherm2-detail">
+      <img src="screenshots-pe/scherm4.png" width="300" alt="scherm4-playlist-toevoegen">
     </td>
     <td style="vertical-align: top;">
       <h3>Uitleg screenshot: </h3>
       <p>
-        Dit 4de scherm is de create pagina van de playlists, waar je het formulier kunt invullen.
-        Dit formulier bestaat dus uit een titel en een beschrijving van de playlist, die ook in de interface van IPlaylist, worden meegegeven,
-        zodat er objecten met deze properties kunnen gemaakt worden. Hier is, zoals al eerder gezegd, de styling niet op en top, maar voor een mogelijke release toe ben ik wel van plan om dit wat aangenamer te maken.
-        Je ziet ook een knop onderaan de pagina genaamd 'Submit', dit zal simpelweg de functie 'createPlaylist' uitvoeren (zie playlist.ts), en zal ook gebruik maken van de 'useRouting' hook 
-        om te navigeren naar de vorige pagina '..'.
+        Op dit scherm kunnen gebruikers nieuwe playlists aanmaken via een invulformulier. De ingevoerde titel en beschrijving worden gekoppeld aan de <code>IPlaylist</code> interface om ervoor te zorgen dat de data-objecten altijd de juiste eigenschappen hebben.
+      </p> 
+      <p> Zoals eerder aangegeven is de styling hier momenteel puur functioneel. Bij een verdere uitbouw van de app zou ik dit formulier visueel verfijnen. 
       </p>
       <ul>
-        <li><strong>Interactie:</strong> Door op de knop 'Submit' te drukken, maak je een nieuwe playlist aan en wordt je teruggestuurd naar de overzichtspagina van scherm 3</li>
-        <li><strong>Navigatie:</strong> Door onderaan op een van de iconen te drukken, zal je naar de bijhorende pagina gebracht worden. Door op het pijltje rechtsboven te klikken, wordt je terug naar scherm 3 gebracht.</li>
+        <li><strong>Interactie:</strong> De 'Submit'-knop activeert de <code>createPlaylist</code> functie om de data op te slaan.</li>
+        <li><strong>Navigatie:</strong> Na het versturen wordt de <code>useRouting</code> hook gebruikt om de gebruiker automatisch terug te leiden naar het overzicht op scherm 3.</li>
+        <li><strong>Beveiliging: </strong>Bij elke playlist die de gebruiker aanmaakt, wordt deze via een unieke <code>userId</code> gekoppeld in <strong>Firestore</strong>. Op deze manier blijft de data strikt gescheiden en zijn de playlists uniek per individuele gebruiker.</li>
       </ul>
     </td>
 </table>
 
 ## Scherm 5
-![img.png](screenshots-pe/scherm5-1.png)
-![img.png](screenshots-pe/scherm5-2.png)
-
-**Uitleg screenshot:**
-Dit vijfde scherm is het account-scherm. Als je nog geen account zou hebben, dan zal je de eerste foto te 
-zien krijgen. Je zal daar 2 knoppen krijgen die je ofwel brengen naar een inlog-pagina of een pagina waar je kunt registeren.
-Voorlopig werken deze pagina's nog niet helemaal, maar ik denk dat ik deze wel kan laten werken door eventueel Firebase authenticatie te gebruiken. 
-
-Als je wel ben ingelogd dan zal je de tweede foto te zien krijgen. Hier zal je een overzicht krijgen van je gegevens zoals je 'username', paswoord, en email-adres. 
-Hoe dat de pagina er nu uitziet is tijdelijk en zal hoogstwaarschijnlijk wel aanpassen qua styling. Dat geldt ook voor de 2 knoppen op foto 1.
+<table>
+  <tr>
+    <td width="300">
+      <img src="screenshots-pe/scherm5-1.png" width="300" alt="scherm5-account-acties">
+    </td>
+    <td style="vertical-align: top;">
+      <h3>Uitleg screenshot: </h3>
+      <p>
+        Dit is het scherm voor je account. Als je nog niet bent ingelogd, zie je dit overzicht met twee duidelijke knoppen om in te loggen of je te registreren.
+      </p> 
+      <p> 
+        Deze en andere pagina's omtrent accountbeheer gebruiken <strong>Firebase authenticatie</strong>. Op deze manier kunnen gebruikers hun eigen profiel beheren. 
+      </p>
+      <ul>
+        <li><strong>Interactie:</strong> De knoppen brengen je naar de inlog- of registratiepagina om de flow van de app te testen.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="300">
+      <img src="screenshots-pe/scherm5-2.png" width="300" alt="scherm5-ingelogd">
+    </td>
+    <td style="vertical-align: top;">
+      <h3>Uitleg screenshot: </h3>
+      <p>
+        Zodra je bent ingelogd, krijg je dit overzicht van je accountgegevens te zien, zoals je gebruikersnaam en e-mailadres.
+      </p> 
+      <ul>
+        <li>
+          <strong>Data-verwerking:</strong> De accountgegevens worden dynamisch opgehaald uit de <strong>Firestore database</strong> om te verifiëren of de overdracht tussen de app en de database correct verloopt.
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ## Scherm 6
-![img.png](screenshots-pe/scherm6.png)
-
-**Uitleg screenshot:**
-Dit scherm krijg je als op de 'Login' knop drukt. 
-Als je al geregistreerd bent, dan hoef je hier gewoonweg je username en wachtwoord in te voeren en dan op de 'Login' knop te drukken.
-Bij een druk op de knop zal je dus terug gebracht worden naar je account-overzicht (zie vorig scherm)' met de juiste gegevens. Zoals alle schermen,
-is de styling tijdelijk, en zal dus zeker veranderen.
-
-Voorlopig werkt de functionaliteit ook nog niet 100%, dus hier zal ook nog moeten aan getweaked worden, als ik dit wil laten werken,
-eventueel door gebruik van Firebase bijvoorbeeld, zoals hierboven al vermeld.
+<table>
+  <tr>
+    <td width="300">
+      <img src="screenshots-pe/scherm6.png" width="300" alt="scherm6-login">
+    </td>
+    <td style="vertical-align: top;">
+      <h3>Uitleg screenshot: </h3>
+      <p>
+        Dit scherm wordt getoond na een druk op de 'Login' knop. Geregistreerde gebruikers kunnen hier hun email-adres en wachtwoord invoeren om toegang te krijgen tot hun account.
+      </p> 
+      <ul>
+        <li><strong>Interactie:</strong> Bij het drukken op de 'Login' knop wordt de gebruiker teruggeleid naar het account-overzicht van scherm 5.</li>
+        <li><strong>Data-verwerking:</strong> De accountgegevens worden opgeslagen in de <strong>Firestore database</strong>, waar bij het inloggen, deze gegevens worden opgevraagd.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ## Scherm 7
-![img.png](screenshots-pe/scherm7.png)
+<table>
+  <tr>
+    <td width="300">
+      <img src="screenshots-pe/scherm7.png" width="300" alt="scherm7-register">
+    </td>
+    <td style="vertical-align: top;">
+      <h3>Uitleg screenshot: </h3>
+      <p>
+        Naast de 'Login' optie, kunnen nieuwe gebruikers via dit scherm een account aanmaken door een e-mailadres, gebruikersnaam en wachtwoord op te geven.
+      </p> 
+      <ul>
+        <li><strong>Interactie:</strong> Bij een druk op de 'Create account' knop wordt de gebruiker teruggebracht naar het account-overzicht, waar de ingevulde informatie direct zichtbaar is.</li>
+        <li><strong>Data-verwerking:</strong> De accountgegevens die je als gebruiker invult, worden opgeslagen in de <strong>Firestore database</strong>, zodat deze later bij het inloggen weer kunnen worden opgevraagd.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-**Uitleg screenshot:**
-Naast de 'Login' knop, kom je dit scherm terecht als je op de 'Register' knop drukt.
-Hier kan je een email, username, passwoord invoeren die je wilt gebruiken. 
-Bij een druk op de 'Create account' knop, zal je ook worden teruggebracht naar je account-overzicht, opnieuw met de juiste info ingevuld.
-
-Voorlopig werkt de functionaliteit hier ook nog niet 100%, dus hier zal ook nog moeten aan getweaked worden, als ik dit wil laten werken,
-eventueel door gebruik van Firebase bijvoorbeeld, zoals al eerder vermeld.
-
-## Native modules
+## Welke native modules gebruik ik in deze app?
 Voorlopig zijn er nog geen native modules in de applicatie verwerkt, 
 maar ik wil een native module voor de camera toevoegen, zodat je zelf foto's kunt nemen,
 die dan als afbeelding kunnen worden gebruikt voor de eigen gemaakte playlist of misschien als profielfoto.
@@ -162,7 +196,7 @@ die dan als afbeelding kunnen worden gebruikt voor de eigen gemaakte playlist of
 Daarnaast wil ik ook nog wel proberen de native-module van de galerij toe te voegen, 
 zodat je al reeds gemaakte afbeeldingen kunt kiezen voor de playlist / profielfoto
 
-## Online services
+## Welke online-services gebruik ik in de app?
 
 **1. Spotify API**
 Met deze app maak ik gebruik van de Spotify API, die wordt gebruikt om de 'Top Songs' pagina op te vullen.
@@ -173,7 +207,7 @@ teruggeeft.
 
 Ik wil zeker nog wel een 2de online service gebruiken, maar ik ben nog niet zeker welke dit juist is (Firebase, MKKV...)
 
-## Gestures & animaties
+## Welke gestures en/of animaties zijn er gebruikt?
 Voorlopig heb ik nog niet echt een concreet idee hoe ik gestures en animaties wil toevoegen, maar 
 ik denk dat ik deze tegen het einde wil invoegen, nadat al de rest al is gemaakt. Een ideetje is misschien
 om per item op de playlist pagina, een swipe-gesture toe te voegen, om zo een item te verwijderen, meer opties te tonen (edit, delete)...
