@@ -28,7 +28,9 @@ Als ik deze app later volledig af zou maken en echt zou uitbrengen, is het eerst
 <table>
   <tr>
     <td width="300">
-      <img src="screenshots-pe/scherm2.png" width="300" alt="scherm2-detail">
+      <img src="screenshots-pe/scherm2-1.png" width="300" alt="scherm2-detail">
+      <br><br>
+      <img src="screenshots-pe/scherm2-2.png" width="300" alt="scherm2-modal">
     </td>
     <td style="vertical-align: top;">
       <h3>Uitleg screenshot: </h3>
@@ -96,7 +98,7 @@ Als ik deze app later volledig af zou maken en echt zou uitbrengen, is het eerst
 <table>
   <tr>
     <td width="300">
-      <img src="screenshots-pe/scherm4.png" width="300" alt="scherm4-playlist-toevoegen">
+      <img src="screenshots-pe/scherm4-1.png" width="300" alt="scherm4-playlist-toevoegen">
     </td>
     <td style="vertical-align: top;">
       <h3>Uitleg screenshot: </h3>
@@ -107,10 +109,28 @@ Als ik deze app later volledig af zou maken en echt zou uitbrengen, is het eerst
       </p>
       <ul>
         <li><strong>Interactie:</strong> De 'Submit'-knop activeert de <code>createPlaylist</code> functie om de data op te slaan.</li>
-        <li><strong>Navigatie:</strong> Na het versturen wordt de <code>useRouting</code> hook gebruikt om de gebruiker automatisch terug te leiden naar het overzicht op scherm 3.</li>
+        <li><strong>Navigatie:</strong> Na het versturen wordt de <code>useRouter</code> hook gebruikt om de gebruiker automatisch terug te leiden naar het overzicht op scherm 3.</li>
         <li><strong>Beveiliging: </strong>Bij elke playlist die de gebruiker aanmaakt, wordt deze via een unieke <code>userId</code> gekoppeld in <strong>Firestore</strong>. Op deze manier blijft de data strikt gescheiden en zijn de playlists uniek per individuele gebruiker.</li>
       </ul>
     </td>
+  </tr>
+  <tr>
+    <td width="300">
+      <img src="screenshots-pe/scherm4-2.png" width="300" alt="scherm4-playlist-aanpassen">
+    </td>
+    <td style="vertical-align: top;">
+      <h3>Uitleg screenshot: </h3>
+      <p>
+        Als de gebruiker op één van zijn/haar playlists zou drukken, dan heeft hij/zij de mogelijkheid om wijzigingen toe te brengen. 
+        De gebruiker kan de titel van de playlist aanpassen, maar ook de beschrijving van de playlist.
+        Naast de titel en beschrijving, krijgt de gebruiker ook alle songs te zien die aan de playlist zijn toegevoegd. 
+      </p>
+      <ul>
+        <li><strong>Interactie:</strong> Indien men één of meerdere songs uit de lijst wenst te verwijderen, kan men een song naar links swipen, waarna een vuilbak-icoon zichtbaar wordt. Een druk op dit icoon zal de song nog niet direct verwijderen; pas na het drukken op de 'Submit'-knop worden de songs definitief uit de lijst gewist en worden alle wijzigingen doorgegeven aan de <code>Firestore database</code>.</li>
+        <li><strong>Navigatie:</strong> Na het bevestigen krijgt de gebruiker een alert en wordt de <code>useRouter</code> hook gebruikt om de gebruiker automatisch terug te leiden naar het overzicht op scherm 3. Indien men geen aanpassingen wenst te doen kan men de 'Back'-button gebruiken om terug te gaan naar het overzicht van scherm 3</li>
+      </ul>
+    </td>
+  </tr>
 </table>
 
 ## Scherm 5
@@ -189,25 +209,39 @@ Als ik deze app later volledig af zou maken en echt zou uitbrengen, is het eerst
 </table>
 
 ## Welke native modules gebruik ik in deze app?
-Voorlopig zijn er nog geen native modules in de applicatie verwerkt, 
-maar ik wil een native module voor de camera toevoegen, zodat je zelf foto's kunt nemen,
-die dan als afbeelding kunnen worden gebruikt voor de eigen gemaakte playlist of misschien als profielfoto.
+### De modal pop-up
+Voor het toevoegen van songs aan een playlist maak ik gebruik van de native `Modal` en `Picker` componenten.
+De picker zorgt voor een vertrouwde interface die zich aanpast aan de stijl van het huidige besturingssysteem, wat de gebruiksvriendelijkheid verbetert.
 
-Daarnaast wil ik ook nog wel proberen de native-module van de galerij toe te voegen, 
-zodat je al reeds gemaakte afbeeldingen kunt kiezen voor de playlist / profielfoto
+### Share-menu na double-tap
+Door te dubbeltikken op een van de songs op de startpagina, wordt de Share-API van het besturingssysteem aangeroepen.
+Dit opent het standaard deelmenu van de smartphone, waardoor de Spotify-URL van de track direct gedeeld kan worden.
+
 
 ## Welke online-services gebruik ik in de app?
+### 1. Spotify API
+In deze app maak ik gebruik van de Spotify API, die de startpagina dynamisch opvult.
+In de geschreven logica wordt er een api-key/access-token opgehaald zodat er vervolgens een playlist kan worden opgehaald via een specifieke id. 
+In dit proces vul ik de array op, die gemaakt is op basis van het `ITrack` model, met de juiste waardes.
+Uiteindelijk krijg ik dus een array terug met alle items die je op de eerste pagina ziet, die enkel de properties van `ITrack` bevat en niet alle properties die de API teruggeeft.
 
-**1. Spotify API**
-Met deze app maak ik gebruik van de Spotify API, die wordt gebruikt om de 'Top Songs' pagina op te vullen.
-Er wordt met deze API, een api-key opgehaald en er wordt vervolgens een playlist opgehaald via een bepaalde id. 
-In die functie, waar ik de playlist ophaal, vul ik de array op (gemaakt op basis van het 'ITrack' model), met de juiste waardes.
-Uiteindelijk krijg ik dus een array terug met alle items die je op de eerste pagina ziet, met enkel de properties van het model en niet alle andere properties die de API 
-teruggeeft.
+### 2. Firebase Auth / Firestore
+Naast de Spotify-API, maak ik ook gebruik van Firebase Auth / Firestore. 
 
-Ik wil zeker nog wel een 2de online service gebruiken, maar ik ben nog niet zeker welke dit juist is (Firebase, MKKV...)
+Firebase Auth zorgt voor een ordelijk gebruikersbeheer: bij registratie worden de accountgegevens veilig opgeslagen, waardoor gebruikers bij een volgend bezoek aan de app eenvoudig kunnen inloggen.
+
+Firestore wordt gebruikt als de database voor de door de gebruiker aangemaakte playlists. 
+Dit zorgt ervoor dat de persoonlijke playlists en de daaraan toegevoegde songs over verschillende sessies bewaard blijven en zo altijd beschikbaar zijn.
+
+Zowel de verschillende ID's en credentials voor de API als de configuratie van Firebase worden allemaal via een `.env` bestand ingeladen. 
+Hierdoor is de veiligheid gegarandeerd omdat deze gevoelige gegevens afgeschermd zijn van het publiek.
+Daardoor worden de verschillende waardes in zowel `spotifyApi.ts` en `firebaseConfig.ts` aangeroepen via `process.env`, wat een veilige configuratie garandeert.
 
 ## Welke gestures en/of animaties zijn er gebruikt?
-Voorlopig heb ik nog niet echt een concreet idee hoe ik gestures en animaties wil toevoegen, maar 
-ik denk dat ik deze tegen het einde wil invoegen, nadat al de rest al is gemaakt. Een ideetje is misschien
-om per item op de playlist pagina, een swipe-gesture toe te voegen, om zo een item te verwijderen, meer opties te tonen (edit, delete)...
+Een eerste gesture die in de app verwerkt zit, is de 'double-tap' op de startpagina.
+Door te dubbeltikken op een van de songs verschijnt het deelmenu, waarmee de gebruiker de Spotify-link van het nummer direct kan delen met anderen.
+
+Daarnaast is er ook nog een swipe-gesture op de bewerkpagina van een playlist, die eerder al aan bod is gekomen. 
+Door een song naar links te swipen, wordt de optie om deze song uit die playlist te verwijderen zichtbaar. 
+Hoewel de UI pas definitief wordt aangepast na het submitten, wordt de song op de achtergrond wel verwijderd uit de `Firestore database`.
+Bij een volgend bezoek zal je zien dat de song uit de lijst verwijderd is.
