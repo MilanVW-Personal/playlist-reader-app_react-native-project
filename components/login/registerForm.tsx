@@ -13,7 +13,6 @@ const RegisterForm: FunctionComponent<RegisterProps> = () => {
   const router = useRouter()
 
   const submitRegister = async () => {
-    console.log("test")
     await register(newUserEmail, newUserPassword, newUserName)
     router.push("/account/start")
   }

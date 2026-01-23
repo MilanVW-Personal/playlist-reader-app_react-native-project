@@ -14,13 +14,10 @@ const SongListDetail: FunctionComponent<SongListDetailProps> = ({id}) => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
   const currentUser = auth.currentUser
 
-  // console.log(id)
-
   useEffect(() => {
     const haalDetailsSongOp = () => {
       const details = getTrackDetails(id)
       setDetailsSong(details)
-      // console.log(details)
     }
 
     if (id != null) haalDetailsSongOp()

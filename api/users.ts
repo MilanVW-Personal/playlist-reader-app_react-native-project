@@ -8,14 +8,12 @@ export const register = async (email: string, password: string, username: string
   const user = userGegevens.user
 
   await updateProfile(user, {displayName: username})
-  console.log(user)
 
   await setDoc(doc(firestore, "users", user.uid), {
     email: email,
     displayName: username,
   })
 
-  // test - abcdefg
   return user
 }
 

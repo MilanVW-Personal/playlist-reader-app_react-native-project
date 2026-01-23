@@ -13,7 +13,6 @@ const Create: FunctionComponent<CreateProps> = () => {
   const userId = auth.currentUser?.uid as string
 
   const submitCreateForm = async () => {
-    console.log(userId)
     try {
       await createPlaylist(titleInput, descriptionInput, userId)
       setTitleInput('')
@@ -21,7 +20,7 @@ const Create: FunctionComponent<CreateProps> = () => {
       alert('created!')
       router.push('..')
     } catch (error) {
-      console.error(error)
+      throw new Error(`${error}`)
     }
   }
 

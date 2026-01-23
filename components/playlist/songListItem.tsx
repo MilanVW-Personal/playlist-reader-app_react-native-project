@@ -17,10 +17,12 @@ const SongListItem: FunctionComponent<ITrack> = ({artists, title, id, webURL}) =
     })
 
     if (result.action == Share.sharedAction) {
-      if (result.activityType) console.log('shared w/ ', result.activityType)
-      else console.log('Shared!')
+      if (result.activityType) 
+        alert(`Shared w/ ${result.activityType}`)
+      else 
+        alert("Shared!")
     } else if (result.action === Share.dismissedAction) {
-      console.log('Cancelled share')
+        // alert("Cancelled share.")
     }
   }
 

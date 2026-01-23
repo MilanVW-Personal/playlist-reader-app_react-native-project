@@ -13,7 +13,6 @@ const PlaylistDetails: FunctionComponent = () => {
     const getPlaylist = async () => {
       const playlistFromId = await getPlaylistById(playlistId)
       setPlaylist(playlistFromId)
-      console.log(playlistFromId)
     }
 
     getPlaylist()

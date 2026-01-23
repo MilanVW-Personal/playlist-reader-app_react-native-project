@@ -21,7 +21,6 @@ export const getApiKeyAndShowData = async (): Promise<ITrack[]> => {
   })
   .then(resp => resp.json())
   .then(json => {
-      // console.log(json.access_token)
       apiKey = json.access_token;
   })
 
@@ -43,15 +42,12 @@ const getTodayTopSongs = async (api_key: string) : Promise<ITrack[]> => {
   })
   .then(resp => {
     if (resp.ok){
-      // console.log(resp.ok)
       return resp.json()
     }
   })
   .then(json => {
     if (json != undefined)
     {
-      console.log("Fetched!") // Log om te kijken of de code al dan niet deze if bereikt.
-      // console.log(json.tracks.items)
       json.tracks.items.map(((track, i) => {
         tracks.push({
           id: track.track.album.id,
@@ -65,11 +61,9 @@ const getTodayTopSongs = async (api_key: string) : Promise<ITrack[]> => {
           webURL: track.track.external_urls.spotify,
         })
       }))
-
-      // console.log(tracks)
     }
     else
-      console.log("Couldn't fetch playlist's data!")
+      throw new Error("Couldn't fetch playlist's data!")
   })
   return tracks
 }
@@ -77,5 +71,4 @@ const getTodayTopSongs = async (api_key: string) : Promise<ITrack[]> => {
 export const getTrackDetails = (id: string) => {
   const trackDetail = tracks.find((track) => track.id === id)
   return trackDetail
-  // console.log(fetchedTrack)
 }

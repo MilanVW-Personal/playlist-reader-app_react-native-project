@@ -23,7 +23,6 @@ const ModalPopUp: FunctionComponent<ModalPopUpsProps> = ({onClose, visible, song
 
   const changeValue = (index: number)=> {
     setValue(index)
-    console.log(index)
   }
 
   useEffect(() => {
