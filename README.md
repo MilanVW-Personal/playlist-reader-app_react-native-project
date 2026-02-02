@@ -2,7 +2,7 @@
 ## Korte uitleg
 Deze repository bevat alle code en files voor mijn react-native project, dat ik destijds heb ontwikkeld voor het vak 'Mobile Development'. 
 Met deze README wil ik een duidelijker beeld schetsen van hoe de app in elkaar zit en hoe deze precies werkt. 
-Om een overzicht te krijgen van wat elk scherm en functionaliteit doet, kunt u het bestand [hier](functionaliteiten.md) of bij 'Functionaliteiten' raadplegen.
+Om een overzicht te krijgen van wat elk scherm en functionaliteit doet, kunt u het bestand [`functionaliteiten.md`](functionaliteiten.md) hier of bij 'Functionaliteiten' raadplegen.
 
 ## Wat is dit project?
 Dit project is een mobiele applicatie, gebouwd met React Native en Expo. 
@@ -11,7 +11,7 @@ Via een detailpagina wordt er allerlei metadata van de gekozen song getoond zoal
 Gebruikers hebben dan de keuze om deze song toe te voegen aan hun eigen gemaakte playlists.
 
 Deze playlists worden opgeslagen in een Firestore database, gelinkt aan de gebruiker. Bij het maken van dit project, heb ik 
-deze app als "web-applicatie" gelinkt in Firebase. Hierdoor is enkel het bestand `firebase.config` in de map `api` voldoende om de connectie te maken.
+deze app als "web-applicatie" gelinkt in Firebase. Hierdoor is enkel het bestand `firebaseConfig.ts` in de map `api` voldoende om de connectie te maken.
 Als ik later deze app zou willen uitbrengen, ben ik wel van plan om dit naar een "android configuratie" te veranderen.
 
 De app beschikt over een Login/Register-systeem, waardoor de persoonlijke playlists van gebruikers strikt uniek zijn per account.
@@ -37,5 +37,9 @@ Ik ben met dit project gestart eind november 2024 en heb er, zonder de recentere
 
 ## Functionaliteiten
 Zoals eerder al aangegeven, worden alle schermen en de bijbehorende functionaliteiten in een apart bestand toegelicht. 
-U kunt dit overzicht raadplegen via [deze link](functionaliteiten.md). 
+U kunt dit overzicht raadplegen via het bestand [`functionaliteiten.md`](functionaliteiten.md). 
 Deze documentatie biedt een helder en overzichtelijk beeld over de structuur en werking van de applicatie.
+
+## English version
+English-speaking visitors can view the translated version of this project by selecting the [`README_EN.md`](README_EN.md) file.
+That file also contains a link to the English version of the detailed `functionaliteiten.md` documentation.
